@@ -26,8 +26,11 @@ The QR tree dialect was firtly defined in the following specifications: LINK AL 
 
 # Limitations
 If compared with the specifications defined in LINK AL DOCUMENTO CHE STIAMO REALIZZANDO SU OVERLEAF
-The version v0.9 has the following limitation:
-- METTERLE TUTTE
+The version v1.0 has the following limitation:
+- I riferimenti sono condificati con codifica estensibile 4 8 12
+- Non è implementato l'header
+- I jump sono codificati con codifica estensibile 4 8 12
+
 
 
 # Contributors
