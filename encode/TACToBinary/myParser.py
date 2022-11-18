@@ -144,10 +144,10 @@ class Parser:
         if self.isInt(p[3]):
             p[3] = int(p[3])
             p[0] = '110' + p[2] 
-            if(p[3] <= 65536):
-                p[0] = p[0] + '00' + format(p[3], '016b')
+            if(abs(p[3]) < 32768):
+                p[0] = p[0] + '00' + format(p[3] if p[3]>0 else p[3]+(1<<16), '016b')
             else:
-                p[0] = p[0] + '01' + format(p[3], '032b')
+                p[0] = p[0] + '01' + format(p[3] if p[3]>0 else p[3]+(1<<32), '032b')
         else:
             f = str(p[3]).lower().split("f")
             if(f[1] == "16"):
