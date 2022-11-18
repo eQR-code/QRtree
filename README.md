@@ -1,5 +1,6 @@
 # Punti vari (TB DELETED)
-- [ ] Dobbiamo discutere un attimo sul numero 1 a inizio file. Alla fine del file viene fatto padding?
+- [ ] Dobbiamo discutere un attimo sul numero 1 a inizio file. Se non si riesce a mettere uno 0 si potrebbe fare in modo che il programma crei una continuation con un unico frammento (i primi bit del QRtreeBytecode dovranno perciò essere 10000)
+- [ ] Alla fine del file viene fatto padding? Come?
 - [ ] Non mi è chiaro quali parti dell'header sono state implementate
 - [ ] Occorre capire quali sono le varie mancanze rispetto alle specifiche (forse perché non ci sono ancora le specifiche scritte)
 - [ ] Non ho capito come si fa a selezionare la rappresentazione delle stringhe e se effettivamente è stata gestita la possibilità di uscare sia stringhe di tipo ASCII-7 che UTF8 
