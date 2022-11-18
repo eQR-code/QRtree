@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>test.html</title>
+        <meta charset="utf-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <style>
+            
+    div[data-line] {
+        display: none;
+    }
+    div[data-line][data-executed] {
+        display: block;
+    }
+    
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <h1>test.html</h1>
+            </div>
+            <main class="row">
+                <div class="col-12" data-line="0" data-type="input"><h3>1</h3></div><div class="col-auto" data-line="1" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(1, 6)">ciao</button></div><div class="col-auto" data-line="2" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(2, 7)">salve</button></div><div class="col-auto" data-line="3" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(3, 8)">buongiorno</button></div><div class="col-auto" data-line="3" data-type="else"><button type="button" class="btn btn-sm btn-secondary" onclick="if_true(3, 4)">Altro</button></div><div class="col-12" data-line="4" data-type="print"><h3>e non mi saluti?</h3></div><div class="col-12" data-line="5" data-type="goto" data-par1="18"></div><div class="col-12" data-line="6" data-type="printex"><h3>ha detto ciao</h3></div><div class="col-12" data-line="7" data-type="printex"><h3>ha detto salve</h3></div><div class="col-12" data-line="8" data-type="input"><h3>Come stai?</h3></div><div class="col-auto" data-line="9" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(9, 12)">bene</button></div><div class="col-auto" data-line="9" data-type="else"><button type="button" class="btn btn-sm btn-secondary" onclick="if_true(9, 10)">Altro</button></div><div class="col-12" data-line="10" data-type="print"><h3>mi spiace</h3></div><div class="col-12" data-line="11" data-type="goto" data-par1="13"></div><div class="col-12" data-line="12" data-type="print"><h3>meno male</h3></div><div class="col-12" data-line="13" data-type="inputs"><h3>da 1 a 10?</h3><div class="row"><div class="col-lg-11 col-10"><input type="text" class="form-control" /></div><div class="col-lg-1 col-2"><button type="button" class="btn btn-sm btn-primary" onclick="inputs_submit()">Ok</button></div></div></div><div class="col-12" data-line="14" data-type="ifc" data-par1-cmp="1" data-par1-val="5.1015625" data-par2="17"></div><div class="col-12" data-line="15" data-type="print"><h3>beh stai benone</h3></div><div class="col-12" data-line="16" data-type="goto" data-par1="18"></div><div class="col-12" data-line="17" data-type="print"><h3>proprio male</h3></div>
+            </main>
+        </div>
+        <script>
+            
+    const execute_event = new Event('execute');
+    let cur_line = 0;
+    let last_input = null;
+
+    const cmp_table = {
+        1: (a, b) => a < b,
+        2: (a, b) => a <= b,
+        3: (a, b) => a > b,
+        4: (a, b) => a >= b,
+        5: (a, b) => a == b,
+        6: (a, b) => a != b
+    }
+
+    function execute() {
+        let elements = document.querySelectorAll(`div[data-line='${cur_line}']`);
+        if (elements != null) {
+            for (let line of elements) {
+                let ex = new execute_event.constructor(execute_event.type, execute_event);
+                line.dispatchEvent(ex);
+            }
+        }
+    }
+
+    function next() {
+        cur_line++;
+        execute();
+    }
+
+    function goto(line) {
+        cur_line = line;
+        execute();
+    }
+
+    function if_true(line, goto_line) {
+        let current = document.querySelector(`div[data-line='${line}']`);
+        let n = current.nextSibling;
+        while (n.dataset.type == 'if' || n.dataset.type == 'else') {
+            n.getElementsByTagName("button")[0].disabled = true;
+            n = n.nextSibling;
+        }
+        n = current.previousSibling;
+        while (n.dataset.type == 'if' || n.dataset.type == 'else') {
+            n.getElementsByTagName("button")[0].disabled = true;
+            n = n.previousSibling;
+        }
+        current.getElementsByTagName("button")[0].disabled = true;
+        goto(goto_line);
+    }
+
+    function inputs_submit() {
+        let current = document.querySelector(`div[data-line='${cur_line}']`);
+        current.getElementsByTagName("button")[0].disabled = true;
+        current.getElementsByTagName("input")[0].disabled = true;
+        next();
+    }
+
+    (function () {
+        for (let line of document.querySelectorAll("div[data-line][data-type='print'], div[data-line][data-type='input']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    next();
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        for (let line of document.querySelectorAll("div[data-line][data-type='inputs'], div[data-line][data-type='else'], div[data-line][data-type='printex']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        for (let line of document.querySelectorAll("div[data-line][data-type='if']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    let next_if = event.currentTarget.nextSibling;
+                    if (next_if.dataset.type == 'if') {
+                        next();
+                    }
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        for (let line of document.querySelectorAll("div[data-line][data-type='ifc']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    let prev = event.currentTarget.previousSibling;
+                    while (prev != null && prev.dataset.type != 'inputs') {
+                        prev = prev.previousSibling;
+                    }
+                    let input = parseFloat(prev.getElementsByTagName("input")[0].value);
+                    let cmp = event.currentTarget.dataset.par1Cmp;
+                    let val = parseFloat(event.currentTarget.dataset.par1Val);
+                    if (Number.isInteger(val)) {
+                        input = parseInt(input);
+                    }
+
+                    if (cmp_table[cmp](input, val)) {
+                        goto(parseInt(event.currentTarget.dataset.par2));
+                    } else {
+                        next();
+                    }
+                    
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        for (let line of document.querySelectorAll("div[data-line][data-type='goto']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    let par1 = parseInt(line.dataset.par1);
+                    goto(par1);
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        execute();
+    })();
+    
+        </script>
+    </body>
+</html>
