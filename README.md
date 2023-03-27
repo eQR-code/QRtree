@@ -1,5 +1,5 @@
 # Punti vari (TB DELETED)
-- [ ] I primi bit del IQR code devono essere 10000000000000000 cioè un 1 seguito da 16 zeri
+- [ ] I primi bit del IQR code devono essere 100000000000000000001 cioè un 1 seguito da 16 zeri
 - [ ] Rinominare il file main.py nella radice in QRtree.py
 - [ ] Occorre capire quali sono le varie mancanze rispetto alle specifiche (forse perché non ci sono ancora le specifiche scritte) 
   - Estensibilita' 4 8 12 per i salti
