@@ -1,13 +1,14 @@
 import qrcode
+import os
 #import numpy as np
 
-def encode(file): 
+def encode(inputFileName, outputFileName): 
 
-    with open("binary.txt", 'r') as f:
+    with open(f"{os.path.splitext(inputFileName)[0]}.bin", 'r') as f:
 
         data = f.read()
 
-        data = int("1" + data, 2)
+        data = int("10000000000000000000001" + data, 2)
 
         qr = qrcode.QRCode(version=None, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=4)     #Options for the QRCode
 
@@ -17,4 +18,4 @@ def encode(file):
 
         img = qr.make_image(fill_color="black", back_color="white")     #Creates the real QRCode
 
-        img.save(f"{file}")      #Saves the QRCode in a file
+        img.save(f"{outputFileName}")      #Saves the QRCode in a file

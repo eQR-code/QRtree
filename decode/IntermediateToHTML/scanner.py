@@ -44,9 +44,19 @@ class Scanner():
     t_NE = r'\!\='
     t_OPEN_ROUND = r'\('
     t_CLOSE_ROUND = r'\)'
-    t_FLOAT16 = r'[+-]?([1-9][0-9]*\.[0-9]+|0\.[0-9]+|\.[0-9]+)([eE][+-]?[0-9]+)?f16'
-    t_FLOAT32 = r'[+-]?([1-9][0-9]*\.[0-9]+|0\.[0-9]+|\.[0-9]+)([eE][+-]?[0-9]+)?f32'
-    t_INT = r'(\+|\-)?([1-9][0-9]*|0)'
+
+    def t_FLOAT16(self, t):
+        r'[+-]?([1-9][0-9]*\.[0-9]+|0\.[0-9]+|\.[0-9]+)([eE][+-]?[0-9]+)?f16'
+        return t
+    
+    def t_FLOAT32(self, t):
+        r'[+-]?([1-9][0-9]*\.[0-9]+|0\.[0-9]+|\.[0-9]+)([eE][+-]?[0-9]+)?f32'
+        return t
+
+    def t_INT(self, t):
+        r'[+-]?[1-9][0-9]*|0'
+        t.value = int(t.value)
+        return t
 
     def t_STRING(self, t):
         r'"(?:[^"\\]|\\.)*"'
@@ -58,8 +68,13 @@ class Scanner():
         t.lexer.lineno += 1
         pass
 
+    def t_newline(self, t):
+        r'\n|\r|\r\n'
+        t.lexer.lineno += 1
+        pass
+
     def t_space(self, t):
-        r'\ |\n|\r|\r\n'
+        r'\ '
         pass
 
     # every symbol that doesn't match with almost one of the previous tokens is considered an error

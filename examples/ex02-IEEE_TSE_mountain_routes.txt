@@ -1,0 +1,18 @@
+input "Are you tired?"
+if "yes":
+    input "Do you prefer a lake or a pine forest?"
+    if "lake":
+        print "Pay attention to the cross with the busy road"
+        print 1 # Reference to lake indications
+        exit
+    else if "forest":
+        print 2 # Reference to pine forest indications
+        exit
+else if "no":
+    inputs "How long do you want to walk (minutes)?"
+    ifc > 120:
+        print 3 # Reference to Rivetti hut (2150 meters)
+        exit
+    else:
+        print 4 # Ref. to Madonna della Neve hut (1595 meters)
+        exit

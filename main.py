@@ -1,13 +1,13 @@
 import argparse
 import os
 import webbrowser
-import encode.QRscriptToTAC.main as QrScriptToTac
-import encode.TACToBinary.main as TacToBin
-import encode.BinaryToQRCode.main as BinToQrCode
+import encode.HighLevelToIntermediate.main as HighLevelToIntermediate
+import encode.IntermediateToeQRbytecode.main as IntermediateToeQRbytecode
+import encode.eQRbytecodeToeQRcode.main as eQRbytecodeToeQRcode
 
-import decode.QRCodeToBinary.main as QrCodeToBin
-import decode.BinaryToTAC.main as BinToTac
-import decode.TACToHTML.main as TacToHtml
+import decode.eQRcodeToeQRbytecode.main as eQRcodeToeQRbytecode
+import decode.eQRbytecodeToIntermediate.main as eQRbytecodeToIntermediate
+import decode.IntermediateToHTML.main as IntermediateToHTML
 
 def main(args):
     if args.type == "encode":
@@ -18,26 +18,26 @@ def main(args):
         print("Error")
     
 def main_encode(args):
-    QrScriptToTac.encode(args.input, args.debug)
-    TacToBin.encode(args.input, args.debug)
+    HighLevelToIntermediate.encode(args.input, args.debug)
+    IntermediateToeQRbytecode.encode(args.input, args.debug)
     if args.output is None:
-        args.output = "out.png"
-    BinToQrCode.encode(args.output)
+        args.output = f"{os.path.splitext(args.input)[0]}.png"
+    eQRbytecodeToeQRcode.encode(args.input, args.output)
 
     if not args.no_cleanup:
-        os.remove(f"{args.input}.qr")
-        os.remove("binary.txt")
+        os.remove(f"{os.path.splitext(args.input)[0]}.qr")
+        os.remove(f"{os.path.splitext(args.input)[0]}.bin")
 
 def main_decode(args):
-    QrCodeToBin.decode(args.input)
-    BinToTac.decode(args.input, args.debug)
+    eQRcodeToeQRbytecode.decode(args.input)
+    eQRbytecodeToIntermediate.decode(args.input, args.debug)
     if args.output is None:
-        args.output = "out.html"
-    TacToHtml.decode(args.output, args.debug)
+        args.output = f"{os.path.splitext(args.input)[0]}.html"
+    IntermediateToHTML.decode(args.input, args.output, args.debug)
 
     if not args.no_cleanup:
-        os.remove(f"{args.input}.txt")
-        os.remove("output.txt")
+        os.remove(f"{os.path.splitext(args.input)[0]}.bin")
+        os.remove(f"{os.path.splitext(args.input)[0]}.qr")
 
     # HTML page automatically opens on browser
     webbrowser.open_new(f"file://{os.path.realpath(args.output)}")

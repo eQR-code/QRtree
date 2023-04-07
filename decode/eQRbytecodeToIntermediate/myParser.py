@@ -4,10 +4,10 @@ import struct
 
 class Parser:
 
-    def __init__(self,lexer, debug=False):
+    def __init__(self,lexer, fileName, debug=False):
         self.parser = yacc.yacc(module=self, debug=debug)
         self.lexer = lexer
-        self.output = open("output.txt", "w")
+        self.output = open(f"{fileName}.qr", "w")
         self.curline = 0
         self.endChar = ""
 
@@ -153,16 +153,7 @@ class Parser:
         '''
 
         if(p[5] == '0'):
-            if(p[6][0] == '0'):
-                if(p[6][1][0] == '0'):
-                    self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + str(int(p[6][1], 2)) + " (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')
-                else:
-                    self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + '-' + str(pow(2,16)-int(p[6][1], 2)) + " (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')
-            else:
-                if(p[6][1][0] == '0'):
-                    self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + str(int(p[6][1], 2)) + " (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')
-                else:
-                    self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + '-' + str(pow(2,32)-int(p[6][1], 2)) + " (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')
+            self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + str(int(p[6][1], 2)) + " (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')
         else:
             if(p[6][0] == '0'):
                 self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + str(struct.unpack('!e',struct.pack('!H', int(p[6][1], 2)))[0]) + "f16 (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')

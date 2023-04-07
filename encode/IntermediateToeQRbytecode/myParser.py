@@ -4,10 +4,10 @@ import struct
 
 class Parser:
 
-    def __init__(self,lexer, debug=False):
+    def __init__(self,lexer, fileName, debug=False):
         self.parser = yacc.yacc(module=self, debug=debug)
         self.lexer = lexer
-        self.output = open("binary.txt", "w")
+        self.output = open(f"{fileName}.bin", "w")
         self.endCharAscii = '0000011'
         self.endCharUtf = '00000011'
 
@@ -144,10 +144,10 @@ class Parser:
         if self.isInt(p[3]):
             p[3] = int(p[3])
             p[0] = '110' + p[2] 
-            if(abs(p[3]) < 32768):
-                p[0] = p[0] + '00' + format(p[3] if p[3]>0 else p[3]+(1<<16), '016b')
+            if(p[3] <= 65536):
+                p[0] = p[0] + '00' + format(p[3], '016b')
             else:
-                p[0] = p[0] + '01' + format(p[3] if p[3]>0 else p[3]+(1<<32), '032b')
+                p[0] = p[0] + '01' + format(p[3], '032b')
         else:
             f = str(p[3]).lower().split("f")
             if(f[1] == "16"):

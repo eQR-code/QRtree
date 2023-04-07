@@ -2,6 +2,7 @@ from .three_address_code import ThreeAddressCode, Instruction
 from .scanner import Scanner
 from .parser import Parser
 import argparse
+import os
 
 def encode(file, debug):
     s = Scanner(debug=debug)
@@ -20,7 +21,7 @@ def encode(file, debug):
             line.par1 = line.par1 + i + 1
 
     # Scrivo il file in formato testuale
-    with open(f"{file}.qr", mode='w') as f:
+    with open(f"{os.path.splitext(file)[0]}.qr", mode='w') as f:
         for i, line in enumerate(code):
             print(f"({i}) {line.to_asm()}", file=f)
     

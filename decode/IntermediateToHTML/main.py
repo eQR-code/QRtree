@@ -2,6 +2,7 @@ from .parser import Parser
 from .scanner import Scanner
 from .three_address_code import Instruction, ThreeAddressCode, ComparativeOperand
 import argparse
+import os
 
 def to_html(file, code):
     style = """
@@ -219,16 +220,16 @@ instruction_map = {
     Instruction.PRINTEX: printex_to_html
 }
 
-def decode(file, debug):
+def decode(inputFileName, outputFileName, debug):
     s = Scanner(debug)
     p = Parser(s, debug)
     file_content = None
-    with open(f"output.txt", 'r') as f:
+    with open(f"{os.path.splitext(inputFileName)[0]}.qr", 'r') as f:
         file_content = f.read()
 
     code = p.parse(file_content)
-    html = to_html(file, code)
-    with open(f"{file}", 'w') as f:
+    html = to_html(outputFileName, code)
+    with open(f"{outputFileName}", 'w') as f:
             f.write(html)
     
     return code

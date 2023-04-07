@@ -117,34 +117,34 @@ class Parser:
         '''
         if_conditions = [ThreeAddressCode(Instruction.IF, p[2], len(p[5]))]
         if_blocks = [p[4]]
+        if len(p[5]) != 0:
+            if_blocks[-1].append(ThreeAddressCode(Instruction.GOTO, None, None))
         for i, else_if in enumerate(p[5]):
             if_conditions.append(else_if[0])
             block = else_if[1]
-            if i < len(p[5]) - 1 and block[-1].instruction != Instruction.PRINTEX:
+            if i < len(p[5]) - 1:
                 block.append(ThreeAddressCode(Instruction.GOTO, None, None))
             if_blocks.append(block)
-                
-        if_conditions.append(ThreeAddressCode(Instruction.GOTO, sum(map(len, if_blocks)) - 1, None))
 
         for i, (if_condition, if_block) in enumerate(zip(if_conditions, if_blocks)):
-            if_condition.par2 = len(if_conditions[i + 1:]) + sum(map(len, if_blocks[:i + 1]))
+            if_condition.par2 = len(if_conditions[i + 1:]) + sum(map(len, if_blocks[:i])) + 1
             if if_block[-1].instruction == Instruction.GOTO:
                 if_block[-1].par1 = sum(map(len, if_blocks[i + 1:]))
         
-        p[0] = if_conditions + [instruction for block in if_blocks for instruction in block]
+        p[0] = if_conditions + [ThreeAddressCode(Instruction.GOTO, sum(map(len, if_blocks)), None)] + [instruction for block in if_blocks for instruction in block]
 
     def p_if_statement_else(self, p):
         '''
         if_statement : IF STRING COLUMN block else_if_list ELSE COLUMN block
         '''
-        if p[8][-1].instruction != Instruction.PRINTEX:
-            p[8].append(ThreeAddressCode(Instruction.GOTO, None, None))
         if_conditions = [ThreeAddressCode(Instruction.IF, p[2], len(p[5]))]
-        if_blocks = [p[8], p[4]]
+        if_blocks = [p[8] + [ThreeAddressCode(Instruction.GOTO, None, None)], p[4]]
+        if len(p[5]) != 0:
+            if_blocks[-1].append(ThreeAddressCode(Instruction.GOTO, None, None))
         for i, else_if in enumerate(p[5]):
             if_conditions.append(else_if[0])
             block = else_if[1]
-            if i < len(p[5]) - 1 and block[-1].instruction != Instruction.PRINTEX:
+            if i < len(p[5]) - 1:
                 block.append(ThreeAddressCode(Instruction.GOTO, None, None))
             if_blocks.append(block)
         
