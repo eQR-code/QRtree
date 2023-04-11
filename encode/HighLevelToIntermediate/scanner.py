@@ -26,7 +26,8 @@ class IndentScanner:
         "EQ", 
         "NE", 
         "NL",
-        "WS"
+        "WS",
+        "TAB",
     ]
 
     def __init__(self, debug=False):
@@ -57,12 +58,17 @@ class IndentScanner:
         return t
 
     def t_NL(self, t):
-        r'\n+'
-        t.lexer.lineno += len(t.value)
+        r'\r|\n|\r\n'
+        t.lexer.lineno += 1
         return t
 
     def t_WS(self, t):
-        r'\ \ \ \ '
+        r'\ '
+        if self.line_start:
+            return t
+
+    def t_TAB(self, t):
+        r'\t'
         if self.line_start:
             return t
 
@@ -91,20 +97,37 @@ class IndentScanner:
     def ws_filter(self):
         ws_counter = 0
         indent_stack = [0]
+        indent_spaces = None
+        indent_type = None
+        indend_count = 0
         for token in iter(self.lexer.token, None):
-            if token.type == 'WS' and self.line_start:
+            if self.line_start and token.type in [ "WS", "TAB" ]:
+                if indent_type is None:
+                    indent_type = token.type
+                if token.type != indent_type:
+                    if token.type == "WS":
+                        raise Exception(f"SCANNER ERROR (line {self.lexer.lineno}): Wrong indentation type, tabs are used but space was found")
+                    else:
+                        raise Exception(f"SCANNER ERROR (line {self.lexer.lineno}): Wrong indentation type, spaces are used but tab was found")
                 ws_counter += 1
-                continue
             elif token.type == 'NL':
                 self.line_start = True
                 ws_counter = 0
             else:
                 self.line_start = False
-                if indent_stack[-1] < ws_counter:
-                    indent_stack.append(ws_counter)
+                if indent_type == "WS":
+                    if indent_spaces is None:
+                        indent_spaces = ws_counter
+                    if ws_counter % indent_spaces != 0:
+                        raise Exception(f"SCANNER ERROR (line {self.lexer.lineno}): Wrong indentation level {ws_counter} spaces, the indentation levels are of {indent_spaces} spaces")
+                    indend_count = ws_counter // indent_spaces
+                else:
+                    indend_count = ws_counter
+                if indent_stack[-1] < indend_count:
+                    indent_stack.append(indend_count)
                     yield IndentScanner._new_token("INDENT", self.lexer.lineno)
-                elif indent_stack[-1] > ws_counter:
-                    while indent_stack[-1] > ws_counter:
+                elif indent_stack[-1] > indend_count:
+                    while indent_stack[-1] > indend_count:
                         yield IndentScanner._new_token("DEDENT", self.lexer.lineno)
                         indent_stack.pop()
                 yield token
@@ -125,7 +148,7 @@ class IndentScanner:
 
 class Scanner():
 
-    tokens = [ token for token in IndentScanner.tokens if token not in [ "WS", "NL" ] ]
+    tokens = [ token for token in IndentScanner.tokens if token not in [ "WS", "NL", "TAB" ] ]
 
     def __init__(self, debug=False):
         self.lexer = IndentScanner(debug=debug)
