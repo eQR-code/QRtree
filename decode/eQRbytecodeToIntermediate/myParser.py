@@ -35,7 +35,7 @@ class Parser:
             return int(string, 2)
         elif(l == 12):
             return int(string[4:], 2) + 15
-        elif(l == 24):
+        elif(l == 28):
             return int(string[12:], 2) + 270
 
     tokens = Scanner.tokens
@@ -243,7 +243,7 @@ class Parser:
         ref : ZERO REF4
             | ONE REF4
             | ONE REF8
-            | ONE REF12
+            | ONE REF16
         '''
 
         p[0] = p[1] + p[2]

@@ -38,8 +38,8 @@ class Parser:
             return format(n, '04b')
         elif (n >= 15 and n <= 269):
             return '1111' + format(n-15, '08b')
-        elif (n >= 270 and n <= 4364):
-            return '111111111111' + format(n-270, '012b')
+        elif (n >= 270 and n <= 65535):
+            return '111111111111' + format(n-270, '016b')
 
     tokens = Scanner.tokens
 

@@ -7,7 +7,7 @@ class Scanner:
         self.lexer = lex.lex(module=self, debug=debug)
 
     tokens = [
-        'ZERO', 'ONE', 'BYTE', 'NUMBER', 'REF4', 'REF8', 'REF12',
+        'ZERO', 'ONE', 'BYTE', 'NUMBER', 'REF4', 'REF8', 'REF16',
     ]
 
     states = (
@@ -60,8 +60,8 @@ class Scanner:
         self.lexer.begin('INITIAL')
         return t
 
-    def t_ref_REF12(self,t):
-        r'11111111111(?!111111111111)(0|1){12}'
+    def t_ref_REF16(self,t):
+        r'11111111111(?!1111111111111111)(0|1){16}'
         self.lexer.begin('INITIAL')
         return t
 
