@@ -7,11 +7,11 @@
 (6) if "forest" (11)
 (7) goto (12)
 (8) print "Pay attention to the cross with the busy road"
-(9) printex "1"
+(9) printex 1
 (10) goto (12)
-(11) printex "2"
+(11) printex 2
 (12) goto (17)
 (13) inputs "How long do you want to walk (minutes)?"
 (14) ifc > 120 (16)
-(15) printex "4"
-(16) printex "3"
+(15) printex 4
+(16) printex 3
