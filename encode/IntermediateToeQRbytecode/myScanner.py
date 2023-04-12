@@ -27,10 +27,12 @@ class Scanner:
 
     def t_INTEGER(self,t):
         r'[+-]?[1-9][0-9]*|0'
+        t.value = int(t.value)
         return t
 
     def t_STRING(self,t):
         r'\"(.)*\"'
+        t.value = t.value[1:-1]
         return t
 
     def t_INPUTS(self,t):

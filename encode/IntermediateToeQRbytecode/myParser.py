@@ -11,20 +11,6 @@ class Parser:
         self.endCharAscii = '0000011'
         self.endCharUtf = '00000011'
 
-    def isInt(self, string):
-        try:
-            int(string)
-            return True
-        except ValueError:
-            return False
-
-    def isFloat(self, string):
-        try:
-            int(string)
-            return True
-        except ValueError:
-            return False
-
     def stringEncoding(self,string):
         res = ''
         if(string.isascii()):
@@ -71,8 +57,7 @@ class Parser:
         input : INPUT constant
         '''
 
-        if self.isInt(p[2]):
-            p[2] = int(p[2])
+        if isinstance(p[2], int):
             p[0] = '0001' + self.referenceEncoding(p[2])
         else:
             p[0] = '0000' + self.stringEncoding(p[2])
@@ -83,8 +68,7 @@ class Parser:
         inputs : INPUTS constant
         '''
 
-        if self.isInt(p[2]):
-            p[2] = int(p[2])
+        if isinstance(p[2], int):
             p[0] = '0011' + self.referenceEncoding(p[2])
         else:
             p[0] = '0010' + self.stringEncoding(p[2])
@@ -95,8 +79,7 @@ class Parser:
         print : PRINT constant
         '''
 
-        if self.isInt(p[2]):
-            p[2] = int(p[2])
+        if isinstance(p[2], int):
             p[0] = '0101' + self.referenceEncoding(p[2])
         else:
             p[0] = '0100' + self.stringEncoding(p[2])
@@ -107,8 +90,7 @@ class Parser:
         printex : PRINTEX constant
         '''
 
-        if self.isInt(p[2]):
-            p[2] = int(p[2])
+        if isinstance(p[2], int):
             p[0] = '0111' + self.referenceEncoding(p[2])
         else:
             p[0] = '0110' + self.stringEncoding(p[2])
@@ -127,8 +109,7 @@ class Parser:
         if : IF constant RO INTEGER RC
         '''
 
-        if self.isInt(p[2]):
-            p[2] = int(p[2])
+        if isinstance(p[2], int):
             p[0] = '1011' + self.referenceEncoding(p[2])
         else:
             p[0] = '1010'
@@ -141,8 +122,7 @@ class Parser:
         ifc : IFC rel_op operand RO INTEGER RC
         '''
 
-        if self.isInt(p[3]):
-            p[3] = int(p[3])
+        if isinstance(p[3], int):
             p[0] = '110' + p[2] 
             if(p[3] <= 65536):
                 p[0] = p[0] + '00' + format(p[3], '016b')
@@ -163,7 +143,7 @@ class Parser:
                 | INTEGER
         '''
     
-        p[0] = p[1].strip('"')
+        p[0] = p[1]
 
     def p_rel_op(self,p):
         '''
