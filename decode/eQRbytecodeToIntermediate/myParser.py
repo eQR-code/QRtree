@@ -29,15 +29,6 @@ class Parser:
             res += c
         return res
 
-    # def binRefToIntRef(self, string):
-    #     l = len(string)
-    #     if(l == 4):
-    #         return int(string, 2)
-    #     elif(l == 12):
-    #         return int(string[4:], 2) + 15
-    #     elif(l == 28):
-    #         return int(string[12:], 2) + 270
-
     def _exponential_ones_value(self, ones: int) -> int:
         if ones == 0:
             return 0

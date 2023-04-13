@@ -19,14 +19,6 @@ class Parser:
             res = '01' + ''.join(format(i, '08b') for i in bytearray(string, encoding ='utf-8')) + self.endCharUtf
         return res
 
-    # def referenceEncoding(self, n):
-    #     if(n >= 0 and n <= 14):
-    #         return format(n, '04b')
-    #     elif (n >= 15 and n <= 269):
-    #         return '1111' + format(n-15, '08b')
-    #     elif (n >= 270 and n <= 65535):
-    #         return '111111111111' + format(n-270, '016b')
-
     def _exponential_ones_value(self, ones: int) -> int:
         if ones == 0:
             return 0
