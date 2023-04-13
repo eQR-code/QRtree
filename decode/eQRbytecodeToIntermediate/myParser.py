@@ -29,14 +29,28 @@ class Parser:
             res += c
         return res
 
-    def binRefToIntRef(self, string):
-        l = len(string)
-        if(l == 4):
-            return int(string, 2)
-        elif(l == 12):
-            return int(string[4:], 2) + 15
-        elif(l == 28):
-            return int(string[12:], 2) + 270
+    # def binRefToIntRef(self, string):
+    #     l = len(string)
+    #     if(l == 4):
+    #         return int(string, 2)
+    #     elif(l == 12):
+    #         return int(string[4:], 2) + 15
+    #     elif(l == 28):
+    #         return int(string[12:], 2) + 270
+
+    def _exponential_ones_value(self, ones: int) -> int:
+        if ones == 0:
+            return 0
+        if ones == 4:
+            return 2**ones - 1
+        return self._exponential_ones_value(ones // 2) + 2**(ones // 2) - 1
+
+    def binRefToIntRef(self, value: str) -> int:
+        if len(value) > 4 and not value.startswith("1" * (len(value) // 2)):
+            raise Exception("Wrong format of exponential uint")
+        if len(value) == 4:
+            return int(value, 2)
+        return self._exponential_ones_value(len(value) // 2) + int(value[len(value) // 2:], 2)
 
     tokens = Scanner.tokens
 
@@ -244,6 +258,7 @@ class Parser:
             | ONE REF4
             | ONE REF8
             | ONE REF16
+            | ONE REF32
         '''
 
         p[0] = p[1] + p[2]

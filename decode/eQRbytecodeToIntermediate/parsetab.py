@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'BYTE NUMBER ONE REF16 REF4 REF8 ZERO\n        prog : op_list\n        \n        op_list : op_list op\n                | op\n        \n        op : input\n            | inputs\n            | print\n            | printex\n            | goto\n            | if\n            | ifc\n        \n        input : ZERO ZERO ZERO ZERO constant\n                | ZERO ZERO ZERO ONE number\n        \n        inputs : ZERO ZERO ONE ZERO constant\n                | ZERO ZERO ONE ONE number\n        \n        print : ZERO ONE ZERO ZERO constant\n                | ZERO ONE ZERO ONE number\n        \n        printex : ZERO ONE ONE ZERO constant\n                | ZERO ONE ONE ONE number\n        \n        goto : ONE ZERO ZERO number\n        \n        if : ONE ZERO ONE ZERO constant number\n                | ONE ZERO ONE ONE number number\n        \n        ifc : ONE ONE ZERO rel_op ZERO operand number\n                | ONE ONE ZERO rel_op ONE operand number\n        \n        operand : optype NUMBER\n        \n        optype : ZERO\n                | ONE\n        \n        constant : stype byte_list eot\n                | stype eot\n        \n        stype : ZERO marker2 ZERO\n            | ZERO marker3 ONE\n        \n        marker2 :\n        \n        marker3 :\n        \n        byte_list : byte_list BYTE\n                    | BYTE\n        \n        number : marker ref\n        \n        marker :\n        \n        ref : ZERO REF4\n            | ONE REF4\n            | ONE REF8\n            | ONE REF16\n        \n        rel_op : ZERO ZERO ZERO \n                | ZERO ZERO ONE\n                | ZERO ONE ZERO \n                | ZERO ONE ONE\n                | ONE ZERO ZERO \n                | ONE ZERO ONE\n        \n        eot : ZERO ZERO ZERO ZERO ZERO ONE ONE\n            | ZERO ZERO ZERO ZERO ZERO ZERO ONE ONE\n        '
+_lr_signature = 'BYTE NUMBER ONE REF16 REF32 REF4 REF8 ZERO\n        prog : op_list\n        \n        op_list : op_list op\n                | op\n        \n        op : input\n            | inputs\n            | print\n            | printex\n            | goto\n            | if\n            | ifc\n        \n        input : ZERO ZERO ZERO ZERO constant\n                | ZERO ZERO ZERO ONE number\n        \n        inputs : ZERO ZERO ONE ZERO constant\n                | ZERO ZERO ONE ONE number\n        \n        print : ZERO ONE ZERO ZERO constant\n                | ZERO ONE ZERO ONE number\n        \n        printex : ZERO ONE ONE ZERO constant\n                | ZERO ONE ONE ONE number\n        \n        goto : ONE ZERO ZERO number\n        \n        if : ONE ZERO ONE ZERO constant number\n                | ONE ZERO ONE ONE number number\n        \n        ifc : ONE ONE ZERO rel_op ZERO operand number\n                | ONE ONE ZERO rel_op ONE operand number\n        \n        operand : optype NUMBER\n        \n        optype : ZERO\n                | ONE\n        \n        constant : stype byte_list eot\n                | stype eot\n        \n        stype : ZERO marker2 ZERO\n            | ZERO marker3 ONE\n        \n        marker2 :\n        \n        marker3 :\n        \n        byte_list : byte_list BYTE\n                    | BYTE\n        \n        number : marker ref\n        \n        marker :\n        \n        ref : ZERO REF4\n            | ONE REF4\n            | ONE REF8\n            | ONE REF16\n            | ONE REF32\n        \n        rel_op : ZERO ZERO ZERO \n                | ZERO ZERO ONE\n                | ZERO ONE ZERO \n                | ZERO ONE ONE\n                | ONE ZERO ZERO \n                | ONE ZERO ONE\n        \n        eot : ZERO ZERO ZERO ZERO ZERO ONE ONE\n            | ZERO ZERO ZERO ZERO ZERO ZERO ONE ONE\n        '
     
-_lr_action_items = {'ZERO':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,60,62,63,64,65,66,67,68,69,70,71,74,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,97,98,],[11,11,-3,-4,-5,-6,-7,-8,-9,-10,14,17,-2,18,20,22,24,25,27,29,31,34,37,-36,40,-36,40,-36,40,-36,40,-36,50,51,54,-36,40,-19,58,-31,-11,65,-12,-13,-14,-15,-16,-17,-18,67,68,70,73,73,-36,-36,-35,83,65,-28,-34,87,-46,-45,-41,-42,-43,-44,-36,-36,-21,-20,-37,-38,-39,-40,-29,-30,-27,-33,91,-23,-24,-22,92,93,94,-47,-48,]),'ONE':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,26,28,30,32,34,35,36,38,39,40,41,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,61,63,66,67,68,69,70,71,74,76,77,78,79,80,81,82,85,88,89,90,93,94,95,96,97,98,],[12,12,-3,-4,-5,-6,-7,-8,-9,-10,15,16,-2,19,21,23,26,28,30,32,33,36,-36,-36,-36,-36,-36,52,53,-36,-19,59,-32,-11,-12,-13,-14,-15,-16,-17,-18,66,69,71,72,72,-36,-36,-35,84,-28,-46,-45,-41,-42,-43,-44,-36,-36,-21,-20,-37,-38,-39,-40,-27,-23,-24,-22,95,96,97,98,-47,-48,]),'$end':([1,2,3,4,5,6,7,8,9,10,13,38,41,43,44,45,46,47,48,49,57,63,77,78,79,80,81,82,85,88,90,97,98,],[0,-1,-3,-4,-5,-6,-7,-8,-9,-10,-2,-19,-11,-12,-13,-14,-15,-16,-17,-18,-35,-28,-21,-20,-37,-38,-39,-40,-27,-23,-22,-47,-48,]),'BYTE':([42,62,64,83,84,86,],[64,86,-34,-29,-30,-33,]),'REF4':([58,59,],[79,80,]),'REF8':([59,],[81,]),'REF16':([59,],[82,]),'NUMBER':([72,73,75,],[-26,-25,89,]),}
+_lr_action_items = {'ZERO':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,60,62,63,64,65,66,67,68,69,70,71,74,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,98,99,],[11,11,-3,-4,-5,-6,-7,-8,-9,-10,14,17,-2,18,20,22,24,25,27,29,31,34,37,-36,40,-36,40,-36,40,-36,40,-36,50,51,54,-36,40,-19,58,-31,-11,65,-12,-13,-14,-15,-16,-17,-18,67,68,70,73,73,-36,-36,-35,84,65,-28,-34,88,-47,-46,-42,-43,-44,-45,-36,-36,-21,-20,-37,-38,-39,-40,-41,-29,-30,-27,-33,92,-23,-24,-22,93,94,95,-48,-49,]),'ONE':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,26,28,30,32,34,35,36,38,39,40,41,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,61,63,66,67,68,69,70,71,74,76,77,78,79,80,81,82,83,86,89,90,91,94,95,96,97,98,99,],[12,12,-3,-4,-5,-6,-7,-8,-9,-10,15,16,-2,19,21,23,26,28,30,32,33,36,-36,-36,-36,-36,-36,52,53,-36,-19,59,-32,-11,-12,-13,-14,-15,-16,-17,-18,66,69,71,72,72,-36,-36,-35,85,-28,-47,-46,-42,-43,-44,-45,-36,-36,-21,-20,-37,-38,-39,-40,-41,-27,-23,-24,-22,96,97,98,99,-48,-49,]),'$end':([1,2,3,4,5,6,7,8,9,10,13,38,41,43,44,45,46,47,48,49,57,63,77,78,79,80,81,82,83,86,89,91,98,99,],[0,-1,-3,-4,-5,-6,-7,-8,-9,-10,-2,-19,-11,-12,-13,-14,-15,-16,-17,-18,-35,-28,-21,-20,-37,-38,-39,-40,-41,-27,-23,-22,-48,-49,]),'BYTE':([42,62,64,84,85,87,],[64,87,-34,-29,-30,-33,]),'REF4':([58,59,],[79,80,]),'REF8':([59,],[81,]),'REF16':([59,],[82,]),'REF32':([59,],[83,]),'NUMBER':([72,73,75,],[-26,-25,90,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'prog':([0,],[1,]),'op_list':([0,],[2,]),'op':([0,2,],[3,13,]),'input':([0,2,],[4,4,]),'inputs':([0,2,],[5,5,]),'print':([0,2,],[6,6,]),'printex':([0,2,],[7,7,]),'goto':([0,2,],[8,8,]),'if':([0,2,],[9,9,]),'ifc':([0,2,],[10,10,]),'rel_op':([22,],[35,]),'number':([24,26,28,30,32,36,55,56,74,76,],[38,43,45,47,49,55,77,78,88,90,]),'marker':([24,26,28,30,32,36,55,56,74,76,],[39,39,39,39,39,39,39,39,39,39,]),'constant':([25,27,29,31,37,],[41,44,46,48,56,]),'stype':([25,27,29,31,37,],[42,42,42,42,42,]),'ref':([39,],[57,]),'marker2':([40,],[60,]),'marker3':([40,],[61,]),'byte_list':([42,],[62,]),'eot':([42,62,],[63,85,]),'operand':([53,54,],[74,76,]),'optype':([53,54,],[75,75,]),}
+_lr_goto_items = {'prog':([0,],[1,]),'op_list':([0,],[2,]),'op':([0,2,],[3,13,]),'input':([0,2,],[4,4,]),'inputs':([0,2,],[5,5,]),'print':([0,2,],[6,6,]),'printex':([0,2,],[7,7,]),'goto':([0,2,],[8,8,]),'if':([0,2,],[9,9,]),'ifc':([0,2,],[10,10,]),'rel_op':([22,],[35,]),'number':([24,26,28,30,32,36,55,56,74,76,],[38,43,45,47,49,55,77,78,89,91,]),'marker':([24,26,28,30,32,36,55,56,74,76,],[39,39,39,39,39,39,39,39,39,39,]),'constant':([25,27,29,31,37,],[41,44,46,48,56,]),'stype':([25,27,29,31,37,],[42,42,42,42,42,]),'ref':([39,],[57,]),'marker2':([40,],[60,]),'marker3':([40,],[61,]),'byte_list':([42,],[62,]),'eot':([42,62,],[63,86,]),'operand':([53,54,],[74,76,]),'optype':([53,54,],[75,75,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,52 +27,53 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> prog","S'",1,None,None,None),
-  ('prog -> op_list','prog',1,'p_prog','myParser.py',45),
-  ('op_list -> op_list op','op_list',2,'p_op_list','myParser.py',51),
-  ('op_list -> op','op_list',1,'p_op_list','myParser.py',52),
-  ('op -> input','op',1,'p_op','myParser.py',57),
-  ('op -> inputs','op',1,'p_op','myParser.py',58),
-  ('op -> print','op',1,'p_op','myParser.py',59),
-  ('op -> printex','op',1,'p_op','myParser.py',60),
-  ('op -> goto','op',1,'p_op','myParser.py',61),
-  ('op -> if','op',1,'p_op','myParser.py',62),
-  ('op -> ifc','op',1,'p_op','myParser.py',63),
-  ('input -> ZERO ZERO ZERO ZERO constant','input',5,'p_input','myParser.py',68),
-  ('input -> ZERO ZERO ZERO ONE number','input',5,'p_input','myParser.py',69),
-  ('inputs -> ZERO ZERO ONE ZERO constant','inputs',5,'p_inputs','myParser.py',83),
-  ('inputs -> ZERO ZERO ONE ONE number','inputs',5,'p_inputs','myParser.py',84),
-  ('print -> ZERO ONE ZERO ZERO constant','print',5,'p_print','myParser.py',98),
-  ('print -> ZERO ONE ZERO ONE number','print',5,'p_print','myParser.py',99),
-  ('printex -> ZERO ONE ONE ZERO constant','printex',5,'p_printex','myParser.py',113),
-  ('printex -> ZERO ONE ONE ONE number','printex',5,'p_printex','myParser.py',114),
-  ('goto -> ONE ZERO ZERO number','goto',4,'p_goto','myParser.py',128),
-  ('if -> ONE ZERO ONE ZERO constant number','if',6,'p_if','myParser.py',136),
-  ('if -> ONE ZERO ONE ONE number number','if',6,'p_if','myParser.py',137),
-  ('ifc -> ONE ONE ZERO rel_op ZERO operand number','ifc',7,'p_ifc','myParser.py',151),
-  ('ifc -> ONE ONE ZERO rel_op ONE operand number','ifc',7,'p_ifc','myParser.py',152),
-  ('operand -> optype NUMBER','operand',2,'p_operand','myParser.py',166),
-  ('optype -> ZERO','optype',1,'p_optype','myParser.py',173),
-  ('optype -> ONE','optype',1,'p_optype','myParser.py',174),
-  ('constant -> stype byte_list eot','constant',3,'p_constant','myParser.py',185),
-  ('constant -> stype eot','constant',2,'p_constant','myParser.py',186),
-  ('stype -> ZERO marker2 ZERO','stype',3,'p_stype','myParser.py',196),
-  ('stype -> ZERO marker3 ONE','stype',3,'p_stype','myParser.py',197),
-  ('marker2 -> <empty>','marker2',0,'p_marker2','myParser.py',204),
-  ('marker3 -> <empty>','marker3',0,'p_marker3','myParser.py',211),
-  ('byte_list -> byte_list BYTE','byte_list',2,'p_byte_list','myParser.py',218),
-  ('byte_list -> BYTE','byte_list',1,'p_byte_list','myParser.py',219),
-  ('number -> marker ref','number',2,'p_number','myParser.py',229),
-  ('marker -> <empty>','marker',0,'p_marker','myParser.py',236),
-  ('ref -> ZERO REF4','ref',2,'p_ref','myParser.py',243),
-  ('ref -> ONE REF4','ref',2,'p_ref','myParser.py',244),
-  ('ref -> ONE REF8','ref',2,'p_ref','myParser.py',245),
-  ('ref -> ONE REF16','ref',2,'p_ref','myParser.py',246),
-  ('rel_op -> ZERO ZERO ZERO','rel_op',3,'p_rel_op','myParser.py',253),
-  ('rel_op -> ZERO ZERO ONE','rel_op',3,'p_rel_op','myParser.py',254),
-  ('rel_op -> ZERO ONE ZERO','rel_op',3,'p_rel_op','myParser.py',255),
-  ('rel_op -> ZERO ONE ONE','rel_op',3,'p_rel_op','myParser.py',256),
-  ('rel_op -> ONE ZERO ZERO','rel_op',3,'p_rel_op','myParser.py',257),
-  ('rel_op -> ONE ZERO ONE','rel_op',3,'p_rel_op','myParser.py',258),
-  ('eot -> ZERO ZERO ZERO ZERO ZERO ONE ONE','eot',7,'p_eot','myParser.py',277),
-  ('eot -> ZERO ZERO ZERO ZERO ZERO ZERO ONE ONE','eot',8,'p_eot','myParser.py',278),
+  ('prog -> op_list','prog',1,'p_prog','myParser.py',59),
+  ('op_list -> op_list op','op_list',2,'p_op_list','myParser.py',65),
+  ('op_list -> op','op_list',1,'p_op_list','myParser.py',66),
+  ('op -> input','op',1,'p_op','myParser.py',71),
+  ('op -> inputs','op',1,'p_op','myParser.py',72),
+  ('op -> print','op',1,'p_op','myParser.py',73),
+  ('op -> printex','op',1,'p_op','myParser.py',74),
+  ('op -> goto','op',1,'p_op','myParser.py',75),
+  ('op -> if','op',1,'p_op','myParser.py',76),
+  ('op -> ifc','op',1,'p_op','myParser.py',77),
+  ('input -> ZERO ZERO ZERO ZERO constant','input',5,'p_input','myParser.py',82),
+  ('input -> ZERO ZERO ZERO ONE number','input',5,'p_input','myParser.py',83),
+  ('inputs -> ZERO ZERO ONE ZERO constant','inputs',5,'p_inputs','myParser.py',97),
+  ('inputs -> ZERO ZERO ONE ONE number','inputs',5,'p_inputs','myParser.py',98),
+  ('print -> ZERO ONE ZERO ZERO constant','print',5,'p_print','myParser.py',112),
+  ('print -> ZERO ONE ZERO ONE number','print',5,'p_print','myParser.py',113),
+  ('printex -> ZERO ONE ONE ZERO constant','printex',5,'p_printex','myParser.py',127),
+  ('printex -> ZERO ONE ONE ONE number','printex',5,'p_printex','myParser.py',128),
+  ('goto -> ONE ZERO ZERO number','goto',4,'p_goto','myParser.py',142),
+  ('if -> ONE ZERO ONE ZERO constant number','if',6,'p_if','myParser.py',150),
+  ('if -> ONE ZERO ONE ONE number number','if',6,'p_if','myParser.py',151),
+  ('ifc -> ONE ONE ZERO rel_op ZERO operand number','ifc',7,'p_ifc','myParser.py',165),
+  ('ifc -> ONE ONE ZERO rel_op ONE operand number','ifc',7,'p_ifc','myParser.py',166),
+  ('operand -> optype NUMBER','operand',2,'p_operand','myParser.py',180),
+  ('optype -> ZERO','optype',1,'p_optype','myParser.py',187),
+  ('optype -> ONE','optype',1,'p_optype','myParser.py',188),
+  ('constant -> stype byte_list eot','constant',3,'p_constant','myParser.py',199),
+  ('constant -> stype eot','constant',2,'p_constant','myParser.py',200),
+  ('stype -> ZERO marker2 ZERO','stype',3,'p_stype','myParser.py',210),
+  ('stype -> ZERO marker3 ONE','stype',3,'p_stype','myParser.py',211),
+  ('marker2 -> <empty>','marker2',0,'p_marker2','myParser.py',218),
+  ('marker3 -> <empty>','marker3',0,'p_marker3','myParser.py',225),
+  ('byte_list -> byte_list BYTE','byte_list',2,'p_byte_list','myParser.py',232),
+  ('byte_list -> BYTE','byte_list',1,'p_byte_list','myParser.py',233),
+  ('number -> marker ref','number',2,'p_number','myParser.py',243),
+  ('marker -> <empty>','marker',0,'p_marker','myParser.py',250),
+  ('ref -> ZERO REF4','ref',2,'p_ref','myParser.py',257),
+  ('ref -> ONE REF4','ref',2,'p_ref','myParser.py',258),
+  ('ref -> ONE REF8','ref',2,'p_ref','myParser.py',259),
+  ('ref -> ONE REF16','ref',2,'p_ref','myParser.py',260),
+  ('ref -> ONE REF32','ref',2,'p_ref','myParser.py',261),
+  ('rel_op -> ZERO ZERO ZERO','rel_op',3,'p_rel_op','myParser.py',268),
+  ('rel_op -> ZERO ZERO ONE','rel_op',3,'p_rel_op','myParser.py',269),
+  ('rel_op -> ZERO ONE ZERO','rel_op',3,'p_rel_op','myParser.py',270),
+  ('rel_op -> ZERO ONE ONE','rel_op',3,'p_rel_op','myParser.py',271),
+  ('rel_op -> ONE ZERO ZERO','rel_op',3,'p_rel_op','myParser.py',272),
+  ('rel_op -> ONE ZERO ONE','rel_op',3,'p_rel_op','myParser.py',273),
+  ('eot -> ZERO ZERO ZERO ZERO ZERO ONE ONE','eot',7,'p_eot','myParser.py',292),
+  ('eot -> ZERO ZERO ZERO ZERO ZERO ZERO ONE ONE','eot',8,'p_eot','myParser.py',293),
 ]
