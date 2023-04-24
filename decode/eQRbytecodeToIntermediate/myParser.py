@@ -11,6 +11,7 @@ class Parser:
         self.curline = 0
         self.endChar = ""
 
+    # Decodes binary strings with 7-bit characters
     def binStrToStrAscii(self,string):
         res = ""
         s = [string[idx:idx + 7] for idx in range(0, len(string), 7)]
@@ -20,6 +21,7 @@ class Parser:
             res += c
         return res
 
+    # Decodes binary strings with 8-bit characters
     def binStrToStrUtf(self,string):
         res = ""
         s = [string[idx:idx + 8] for idx in range(0, len(string), 8)]
@@ -29,6 +31,7 @@ class Parser:
             res += c
         return res
 
+    # Functions to decode the binary representation of the references
     def _exponential_ones_value(self, ones: int) -> int:
         if ones == 0:
             return 0
@@ -43,6 +46,7 @@ class Parser:
             return int(value, 2)
         return self._exponential_ones_value(len(value) // 2) + int(value[len(value) // 2:], 2)
     
+    # Decodes the binary representation of non references integers
     def from_twos_complement_binary(self, s):
         if s[0] == '1':
             return str(int(s, 2) - (1 << len(s)))
@@ -51,6 +55,7 @@ class Parser:
 
     tokens = Scanner.tokens
 
+    # A program is a list of the encodings of the instruction of QRtree
     def p_prog(self,p):
         '''
         prog : op_list
@@ -73,6 +78,11 @@ class Parser:
             | if
             | ifc
         '''
+
+
+    # Each instruction gets reconstructed based on the binary data 
+    # starting with its own code, and then its other parameters get decoded
+    # using the appropriate function among the ones listed above
     
     def p_input(self,p):
         '''
@@ -171,6 +181,10 @@ class Parser:
             else:
                 self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + str(struct.unpack('!f',struct.pack('!I', int(p[6][1], 2)))[0]) + "f32 (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')
         self.curline += 1
+
+    # Each sequence of bits gets recognized and then uses a special rule
+    # in order to enter a state that makes it so that the parser knows
+    # how many bits it should read in the binary representation
 
     def p_operand(self,p):
         '''
