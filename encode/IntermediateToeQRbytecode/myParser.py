@@ -145,7 +145,7 @@ class Parser:
 
         if isinstance(p[3], int):
             p[0] = '110' + p[2] 
-            if(p[3] <= 65536):
+            if(-32768 <= p[3] <= 32767):
                 p[0] = p[0] + '00' + self.twos_complement_binary(p[3], 16)
             else:
                 p[0] = p[0] + '01' + self.twos_complement_binary(p[3], 32)
