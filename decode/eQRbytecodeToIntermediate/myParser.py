@@ -42,6 +42,12 @@ class Parser:
         if len(value) == 4:
             return int(value, 2)
         return self._exponential_ones_value(len(value) // 2) + int(value[len(value) // 2:], 2)
+    
+    def from_twos_complement_binary(self, s):
+        if s[0] == '1':
+            return str(int(s, 2) - (1 << len(s)))
+
+        return str(int(s, 2))
 
     tokens = Scanner.tokens
 
@@ -158,7 +164,7 @@ class Parser:
         '''
 
         if(p[5] == '0'):
-            self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + str(int(p[6][1], 2)) + " (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')
+            self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + self.from_twos_complement_binary(p[6][1]) + " (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')
         else:
             if(p[6][0] == '0'):
                 self.output.write("(" + str(self.curline) + ") ifc " + p[4] + " " + str(struct.unpack('!e',struct.pack('!H', int(p[6][1], 2)))[0]) + "f16 (" + str(self.binRefToIntRef(p[7]) + self.curline + 1) + ")" + '\n')

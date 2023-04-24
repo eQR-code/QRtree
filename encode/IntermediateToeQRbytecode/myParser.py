@@ -42,6 +42,12 @@ class Parser:
                 return "1" * ones + format(cur_value, f'0{4 if length == 4 else length // 2}b')
             length = length * 2
 
+    def twos_complement_binary(self, n, bits):
+        if n < 0:
+            n = (1 << bits) + n
+
+        return bin(n)[2:].zfill(bits)
+
     tokens = Scanner.tokens
 
     def p_prog(self,p):
@@ -140,9 +146,9 @@ class Parser:
         if isinstance(p[3], int):
             p[0] = '110' + p[2] 
             if(p[3] <= 65536):
-                p[0] = p[0] + '00' + format(p[3], '016b')
+                p[0] = p[0] + '00' + self.twos_complement_binary(p[3], 16)
             else:
-                p[0] = p[0] + '01' + format(p[3], '032b')
+                p[0] = p[0] + '01' + self.twos_complement_binary(p[3], 32)
         else:
             f = str(p[3]).lower().split("f")
             if(f[1] == "16"):
