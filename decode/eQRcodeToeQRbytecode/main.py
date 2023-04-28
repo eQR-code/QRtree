@@ -4,19 +4,21 @@ import os
 
 def decode(file):
     img = cv2.imread(file)      #Takes the QRCode
-    
-    mask = cv2.inRange(img, (0,0,0), (100,100,100))
-    threasholded = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)       #mask to better decode the QRCode
-    img = 255-threasholded
-    
-    codes = pyzbar.decode(img, symbols=[pyzbar.ZBarSymbol.QRCODE])
 
-    if len(codes) == 1:
-        code = codes[0]
+    detector = cv2.QRCodeDetector()
+    
+    data, vertices, _ = detector.detectAndDecode(img)
 
-        data = str(bin(int(code.data))[25:])
+    if len(vertices) == 1:
+        bits = "".join([ f"{byte:0>8b}" for byte in data.encode("latin-1") ])
+
+        i = 0 
+        while bits[i] == "0": # Removing padding
+            i += 1
+        i += 1 # Padding removed
+        header_length = 1 + 4 + 1 + 4 + 4 # Continuation + security profile + url + dialect + version
 
         with open(f"{os.path.splitext(file)[0]}.bin", 'w') as f:
-            f.write(data)
+            f.write(bits[i + header_length:])
     else:
         raise Exception("No QRCode detected")

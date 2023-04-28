@@ -1,6 +1,5 @@
 import qrcode
 import os
-#import numpy as np
 
 def encode(inputFileName, outputFileName): 
 
@@ -8,11 +7,20 @@ def encode(inputFileName, outputFileName):
 
         data = f.read()
 
-        data = int("10000000000000000000001" + data, 2)
+        continuation = "0"
+        security_profile = "0000"
+        url = "0"
+        dialect = "0000"
+        version = "0001"
+        padding = "0" * ((8 - (len(continuation) + len(security_profile) + len(url) + len(dialect) + len(version) + len(data) + 1)) % 8) + "1"
+
+        data = f"{padding}{continuation}{security_profile}{url}{dialect}{version}{data}"
+
+        data = bytes([ int(data[i:i + 8], 2) for i in range(0, len(data), 8) ])
 
         qr = qrcode.QRCode(version=None, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=4)     #Options for the QRCode
 
-        qr.add_data(data)       #Adds the data to the QRCode
+        qr.add_data(data.decode("latin-1"), 0)       #Adds the data to the QRCode
 
         qr.make(fit=True)       #Generates the QRCode making sure that the dimension is compliant with the size of the data
 
