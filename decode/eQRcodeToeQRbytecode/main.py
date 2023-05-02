@@ -1,24 +1,19 @@
-import cv2
-from pyzbar import pyzbar
+import pyzbar.pyzbar as pyzbar
+from PIL import Image
 import os
 
 def decode(file):
-    img = cv2.imread(file)      #Takes the QRCode
+    # Load the QR code PNG image
+    with Image.open(file) as img:
+        qr_data = pyzbar.decode(img)[0].data
 
-    detector = cv2.QRCodeDetector()
-    
-    data, vertices, _ = detector.detectAndDecode(img)
+    i = 0 
+    while qr_data[i] == 48: # Removing padding: 48 is the ASCII code of '0'
+        i += 1
+    i += 1 # Padding removed
 
-    if len(vertices) == 1:
-        bits = "".join([ f"{byte:0>8b}" for byte in data.encode("latin-1") ])
+    header_length = 1 + 4 + 1 + 4 + 4 # Continuation + security profile + url + dialect + version
 
-        i = 0 
-        while bits[i] == "0": # Removing padding
-            i += 1
-        i += 1 # Padding removed
-        header_length = 1 + 4 + 1 + 4 + 4 # Continuation + security profile + url + dialect + version
-
-        with open(f"{os.path.splitext(file)[0]}.bin", 'w') as f:
-            f.write(bits[i + header_length:])
-    else:
-        raise Exception("No QRCode detected")
+    # Write the binary data to a file
+    with open(f"{os.path.splitext(file)[0]}.bin", 'w') as f:
+        f.write(qr_data[i + header_length:].decode('utf-8'))
