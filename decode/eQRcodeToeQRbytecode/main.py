@@ -21,7 +21,7 @@ def decode(file):
             i += 1
         i += 1 # Padding removed
 
-        header_length = 1 + 4 + 1 + 4 + 4 # Continuation + security profile + url + dialect + version
+        header_length = 1 + 4 + 1 + 4 + 4 + 1 # Continuation + security profile + url + dialect + version + qrtree_header
 
         # Write the binary data to a file
         with open(f"{os.path.splitext(file)[0]}.bin", 'w') as f:
