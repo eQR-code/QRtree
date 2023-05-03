@@ -67,7 +67,7 @@ The version v1.0 has the following limitation:
 - Jumps are encoded with an extensible format limited to the following cases 4 bits, 8 bits, 16 bits and 32 bits
 - The DICT type is not handled
 - Header parts (not QRscript and QRtree headers) are not implemented
-- When the **--no-cleanup** option is used, the generated file with extension .bin containing the QRbytecode binary representation of the code does not have neither the QRscript nor the QRtree headers. Both headers are encoded in the generated eQR code, and in particular, the following sequence of bits are included: the needed padding to have the QRbytecode multiple of 8 bits, 0 for the continuation, 0000 for security, 0 for URL, 0000 for dialect, 0001 for version, 0 to indicate the absence of the QRtree header.
+- When the ``--no-cleanup`` option is used, the generated file with extension .bin containing the QRbytecode binary representation of the code does not have neither the QRscript nor the QRtree headers. Both headers are encoded in the generated eQR code, and in particular, the following sequence of bits are included: the needed padding to have the QRbytecode multiple of 8 bits, 0 for the continuation, 0000 for security, 0 for URL, 0000 for dialect, 0001 for version, 0 to indicate the absence of the QRtree header.
 
 # Contributors
 - [Stefano Scanzio](https://www.skenz.it/ss): was the first to propose the possibility to embed a program in a QR code, he proposed most of the programming language, and he coordinates this project
