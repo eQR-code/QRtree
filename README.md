@@ -60,6 +60,10 @@ The QR tree dialect was firtly defined in the following specifications: LINK AL 
 # Release history
 - 2023/01/15: Version v1.0 released. Contributors that worked on this edition are Stefano Scanzio, Matteo Rosani, and Mattia Scamuzzi
 
+# Notes
+- The eQR code was generated using the ``binary'' mode
+- In the implementation it was privilaged the maximum possible ``correction level`` at the cost of having a higher ``version``, in order to improve reliability of QR code read operations.
+
 # Limitations
 If compared with the specifications defined in LINK AL DOCUMENTO CHE STIAMO REALIZZANDO SU OVERLEAF
 The version v1.0 has the following limitation:
