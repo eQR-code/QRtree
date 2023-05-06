@@ -164,8 +164,8 @@ def code_to_html(code):
 
     for i, instruction in enumerate(code):
         ret += instruction_map[instruction.instruction](i, instruction)
-        if instruction.instruction == Instruction.IF and code[i+1].instruction != Instruction.GOTO and code[i+1].instruction != Instruction.IF:
-            ret += f"<div class=\"col-auto\" data-line=\"{i}\" data-type=\"else\"><button type=\"button\" class=\"btn btn-sm btn-secondary\" onclick=\"if_true({i}, {i + 1})\">Altro</button></div>"
+        if instruction.instruction == Instruction.IF and code[i+1].instruction != Instruction.IF:
+            ret += f"<div class=\"col-auto\" data-line=\"{i}\" data-type=\"else\"><button type=\"button\" class=\"btn btn-sm btn-secondary\" onclick=\"if_true({i}, {i + 1})\">Other</button></div>"
         
     return ret
 
