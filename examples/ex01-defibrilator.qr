@@ -6,8 +6,8 @@
 (5) goto (23)
 (6) print "The person has a heart beat rate too low. You should call an ambulance."
 (7) print "In the mean time you should try doing a cardiac massage and then using the defibrilator."
-(8) print "Apply the two pads to the bare chest. One in the middle of the chest and one on the left side slightly below the nipple."
-(9) print "Don't touch the body and start the defibrilator."
+(8) print 1
+(9) print 2
 (10) input "After a couple of charges does the patient woke up?"
 (11) if "Yes" (14)
 (12) if "No" (16)
