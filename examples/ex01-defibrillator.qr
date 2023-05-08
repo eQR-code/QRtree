@@ -5,7 +5,7 @@
 (4) print "The heart beat is normal."
 (5) goto (23)
 (6) print "The person has a heart beat rate too low. You should call an ambulance."
-(7) print "In the mean time you should try doing a cardiac massage and then using the defibrilator."
+(7) print "In the mean time you should try doing a cardiac massage and then using the defibrillator."
 (8) print 1
 (9) print 2
 (10) input "After a couple of charges does the patient woke up?"
@@ -14,7 +14,7 @@
 (13) goto (17)
 (14) print "Great! Wait for the ambulance and keep the patient awake."
 (15) goto (17)
-(16) print "Keep alternating between 2-3 minutes of cardiac massage and defibrilator charges until the ambulance arrives."
+(16) print "Keep alternating between 2-3 minutes of cardiac massage and defibrillator charges until the ambulance arrives."
 (17) goto (23)
 (18) print "The person has a slightly low heart beat. Sit them down."
 (19) print "If they don't feel better after a couple of minutes it's better to call an ambulance."

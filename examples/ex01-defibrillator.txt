@@ -1,14 +1,14 @@
 inputs "How many heart beats can you count in 10 seconds?"
 ifc <= 5:
     print "The person has a heart beat rate too low. You should call an ambulance."
-    print "In the mean time you should try doing a cardiac massage and then using the defibrilator."
+    print "In the mean time you should try doing a cardiac massage and then using the defibrillator."
     print 1 # "Apply the two pads to the bare chest. One in the middle of the chest and one on the left side slightly below the nipple."
-    print 2 # "Don't touch the body and start the defibrilator."
+    print 2 # "Don't touch the body and start the defibrillator."
     input "After a couple of charges does the patient woke up?"
     if "Yes":
         print "Great! Wait for the ambulance and keep the patient awake."
     else if "No":
-        print "Keep alternating between 2-3 minutes of cardiac massage and defibrilator charges until the ambulance arrives."
+        print "Keep alternating between 2-3 minutes of cardiac massage and defibrillator charges until the ambulance arrives."
 else ifc <= 10:
     print "The person has a slightly low heart beat. Sit them down."
     print "If they don't feel better after a couple of minutes it's better to call an ambulance."
