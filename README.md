@@ -1,6 +1,8 @@
 # QRtree compiler
 
-This repository contains the tools used to compile the QRscript dialect QRtree into QRtree bytecode, then into a QR code. It also contains the tools for the inverse process to decompile the QR code into QRtree bytecode and create an HTML page to execute the program.
+The QRtree compiler is the first compiler that allows the generation of a QR code containing an executable program (which is named eQR code) and executed it.
+This repository contains all the tool chain needed to compile the QRscript dialect named **QRtree** into QRtreebytecode, and then to insert the QRtreebytecode into a QR code. It also contains the tools for the inverse process to translate the QR code into QRtreebytecode and create an HTML page for the execution of the program.
+
 
 ## Dependencies
 
@@ -55,17 +57,17 @@ This produces a file called `photo.html` and automatically opens it in the defau
 # QRtree
 QRtree is project aim at embedding a program that implements a decision three into a QR code. QRtree is one of the possibile dialects that can be embedded in a QR code, and all the possible dialects are named QR script.
 
-The QR tree dialect was firtly defined in the following specifications: LINK AL DOCUMENTO CHE STIAMO REALIZZANDO SU OVERLEAF
+The QR tree dialect was firtly defined in the following specifications: LINK TO THE SPECIFICATION DOCUMENT WHEN PUBLISHED.
 
 # Release history
-- 2023/01/15: Version v1.0 released. Contributors that worked on this edition are Stefano Scanzio, Matteo Rosani, and Mattia Scamuzzi
+- 2023/05/12: Version v1.0 released. Contributors that worked on this edition are Stefano Scanzio, Matteo Rosani, and Mattia Scamuzzi
 
 # Notes
-- The eQR code was generated using the ``binary'' mode
+- The eQR code was generated using the ``binary'' mode.
 - In the implementation it was privilaged the maximum possible ``correction level`` at the cost of having a higher ``version``, in order to improve reliability of QR code read operations.
 
 # Limitations
-If compared with the specifications defined in LINK AL DOCUMENTO CHE STIAMO REALIZZANDO SU OVERLEAF
+If compared with the specifications defined in LINK TO THE SPECIFICATION DOCUMENT WHEN PUBLISHED
 The version v1.0 has the following limitation:
 - References are encoded with an extensible format limited to the following cases 4 bits, 8 bits, 16 bits and 32 bits
 - Jumps are encoded with an extensible format limited to the following cases 4 bits, 8 bits, 16 bits and 32 bits
