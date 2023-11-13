@@ -1,0 +1,22 @@
+(0) input "Are you tired?"
+(1) if "yes" (4)
+(2) if "no" (18)
+(3) goto (22)
+(4) input "Do you prefer a lake or a pine forest?"
+(5) if "lake" (8)
+(6) if "forest" (11)
+(7) goto (17)
+(8) print "Pay attention to the cross with the busy road"
+(9) printex 1
+(10) goto (17)
+(11) input "Do you feel like walking for an hour?"
+(12) if "yes" (15)
+(13) printex 2
+(14) goto (17)
+(15) print 4
+(16) printex "You will find the forest on the way"
+(17) goto (22)
+(18) inputs "How long do you want to walk (minutes)?"
+(19) ifc > 120 (21)
+(20) printex 4
+(21) printex 3

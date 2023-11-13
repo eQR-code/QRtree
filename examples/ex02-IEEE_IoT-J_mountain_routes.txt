@@ -6,8 +6,14 @@ if "yes":
         print 1 # Reference to lake indications
         exit
     else if "forest":
-        print 2 # Reference to pine forest indications
-        exit
+        input "Do you feel like walking for an hour?"
+        if "yes":
+            print 4 # Ref. to Madonna della Neve hut (1595 meters)
+            print "You will find the forest on the way"
+            exit
+        else:
+            print 2 # Reference to pine forest indications
+            exit
 else if "no":
     inputs "How long do you want to walk (minutes)?"
     ifc > 120:
