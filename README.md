@@ -4,7 +4,7 @@ The QRtree compiler is the first compiler that allows the generation of a QR cod
 This repository contains all the tool chain needed to compile the QRscript dialect named **QRtree** into QRtreebytecode, and then to insert the QRtreebytecode into a QR code. It also contains the tools for the inverse process to translate the QR code into QRtreebytecode and create an HTML page for the execution of the program.
 
 # Acknowledgment
-Please, cite this software as (even if you just use a part of it):
+Please, cite this software (even if you just use a part of it) as:
 - S. Scanzio, M. Rosani, and M. Scamuzzi, “QRtree software,” GitHub. [Online]. Available: [https://github.com/eQR-code/QRtree](https://github.com/eQR-code/QRtree)
 
 
@@ -35,7 +35,7 @@ Other optional arguments are:
 
 ### Compile a QRtree script
 
-For example you write a simple test code and save it in `test.txt`.
+For example, you write a simple test code and save it in `test.txt`.
 ```
 print "hello world!"
 ```
@@ -72,12 +72,12 @@ The QR tree dialect was first defined in the following specifications [[2]](http
 
 # Limitations
 If compared with the specifications defined in [[2]](https://arxiv.org/abs/2403.04708) and [[3]](https://arxiv.org/abs/2403.04716).
-The version v1.0 has the following limitation:
+The version v1.0 has the following limitations:
 - References are encoded with an extensible format limited to the following cases 4 bits, 8 bits, 16 bits and 32 bits
 - Jumps are encoded with an extensible format limited to the following cases 4 bits, 8 bits, 16 bits and 32 bits
 - The DICT type is not handled
 - Header parts (not QRscript and QRtree headers) are not implemented
-- When the ``--no-cleanup`` option is used, the generated file with extension .bin containing the QRbytecode binary representation of the code does not have neither the QRscript nor the QRtree headers. Both headers are encoded in the generated eQR code, and in particular, the following sequence of bits are included: the needed padding to have the QRbytecode multiple of 8 bits, 0 for the continuation, 0000 for security, 0 for URL, 0000 for dialect, 0001 for version, 0 to indicate the absence of the QRtree header.
+- When the ``--no-cleanup`` option is used, the generated file with extension .bin containing the QRbytecode binary representation of the code does not have either the QRscript or the QRtree headers. Both headers are encoded in the generated eQR code, and in particular, the following sequence of bits are included: the needed padding to have the QRbytecode multiple of 8 bits, 0 for the continuation, 0000 for security, 0 for URL, 0000 for dialect, 0001 for version, 0 to indicate the absence of the QRtree header.
  
 # References
 - [1] S. Scanzio, G. Cena and A. Valenzano, “QRscript: Embedding a Programming Language in QR codes to support Decision and Management,” 27th IEEE International Conference on Emerging Technologies and Factory Automation (ETFA 2022), 2022, pp. 1-8. doi: [10.1109/ETFA52439.2022.9921530](https://doi.org/10.1109/ETFA52439.2022.9921530) (**First paper about QRscript and QRtree**)
