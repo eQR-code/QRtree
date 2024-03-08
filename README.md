@@ -3,6 +3,10 @@
 The QRtree compiler is the first compiler that allows the generation of a QR code containing an executable program (which is named eQR code) and executed it.
 This repository contains all the tool chain needed to compile the QRscript dialect named **QRtree** into QRtreebytecode, and then to insert the QRtreebytecode into a QR code. It also contains the tools for the inverse process to translate the QR code into QRtreebytecode and create an HTML page for the execution of the program.
 
+# Acknowledgment
+Please, cite this software as (even if you just use a part of it):
+- S. Scanzio, M. Rosani, and M. Scamuzzi, “QRtree software,” GitHub. [Online]. Available: [https://github.com/eQR-code/QRtree](https://github.com/eQR-code/QRtree)
+
 
 ## Dependencies
 
@@ -57,23 +61,30 @@ This produces a file called `photo.html` and automatically opens it in the defau
 # QRtree
 QRtree is project aim at embedding a program that implements a decision three into a QR code. QRtree is one of the possibile dialects that can be embedded in a QR code, and all the possible dialects are named QR script.
 
-The QR tree dialect was firtly defined in the following specifications: LINK TO THE SPECIFICATION DOCUMENT WHEN PUBLISHED.
+The QR tree dialect was first defined in the following specifications [[2]](https://arxiv.org/abs/2403.04708) and [[3]](https://arxiv.org/abs/2403.04716).
 
 # Release history
-- 2023/05/12: Version v1.0 released. Contributors that worked on this edition are Stefano Scanzio, Matteo Rosani, and Mattia Scamuzzi
+- 2024/03/13: Version v1.0 released. Contributors that worked on this edition are Stefano Scanzio, Matteo Rosani, and Mattia Scamuzzi [[3]](https://github.com/eQR-code/QRtree).
 
 # Notes
 - The eQR code was generated using the ``binary'' mode.
 - In the implementation it was privilaged the maximum possible ``correction level`` at the cost of having a higher ``version``, in order to improve reliability of QR code read operations.
 
 # Limitations
-If compared with the specifications defined in LINK TO THE SPECIFICATION DOCUMENT WHEN PUBLISHED
+If compared with the specifications defined in [[2]](https://arxiv.org/abs/2403.04708) and [[3]](https://arxiv.org/abs/2403.04716).
 The version v1.0 has the following limitation:
 - References are encoded with an extensible format limited to the following cases 4 bits, 8 bits, 16 bits and 32 bits
 - Jumps are encoded with an extensible format limited to the following cases 4 bits, 8 bits, 16 bits and 32 bits
 - The DICT type is not handled
 - Header parts (not QRscript and QRtree headers) are not implemented
 - When the ``--no-cleanup`` option is used, the generated file with extension .bin containing the QRbytecode binary representation of the code does not have neither the QRscript nor the QRtree headers. Both headers are encoded in the generated eQR code, and in particular, the following sequence of bits are included: the needed padding to have the QRbytecode multiple of 8 bits, 0 for the continuation, 0000 for security, 0 for URL, 0000 for dialect, 0001 for version, 0 to indicate the absence of the QRtree header.
+ 
+# References
+- [1] S. Scanzio, G. Cena and A. Valenzano, “QRscript: Embedding a Programming Language in QR codes to support Decision and Management,” 27th IEEE International Conference on Emerging Technologies and Factory Automation (ETFA 2022), 2022, pp. 1-8. doi: [10.1109/ETFA52439.2022.9921530](https://doi.org/10.1109/ETFA52439.2022.9921530) (**First paper about QRscript and QRtree**)
+- [2] S. Scanzio, M. Rosani, M. Scamuzzi, and G. Cena, “QRscript specification,” arXiv, pp. 1–13, Mar. 2024. [Online]. Available: [https://arxiv.org/abs/2403.04708](https://arxiv.org/abs/2403.04708) (**Specification document of QRscript**)
+- [3] S. Scanzio, M. Rosani, M. Scamuzzi, and G. Cena, “QRtree - Decision Tree dialect specification of QRscript,” arXiv, pp. 1–32, Mar. 2024. [Online]. Available: [https://arxiv.org/abs/2403.04716](https://arxiv.org/abs/2403.04716) (**Specification document of QRtree**)
+- [4] S. Scanzio, M. Rosani, and M. Scamuzzi, “QRtree software,” GitHub. [Online]. Available: [https://github.com/eQR-code/QRtree](https://github.com/eQR-code/QRtree) (**This software**)
+
 
 # Contributors
 - [Stefano Scanzio](https://www.skenz.it/ss): was the first to propose the possibility to embed a program in a QR code, he proposed most of the programming language, and he coordinates this project
