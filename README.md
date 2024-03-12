@@ -61,7 +61,7 @@ This produces a file called `photo.html` and automatically opens it in the defau
 # QRtree
 QRtree is project aim at embedding a program that implements a decision three into a QR code. QRtree is one of the possibile dialects that can be embedded in a QR code, and all the possible dialects are named QR script.
 
-The QR tree dialect was first defined in the following specifications [[2]](https://arxiv.org/abs/2403.04708) and [[3]](https://arxiv.org/abs/2403.04716).
+The QR tree dialect was first defined in the following specifications [[2]](https://doi.org/10.48550/arXiv.2403.04708) and [[3]](https://doi.org/10.48550/arXiv.2403.04716).
 
 # Release history
 - 2024/03/13: Version v1.0 released. Contributors that worked on this edition are Stefano Scanzio, Matteo Rosani, and Mattia Scamuzzi [[3]](https://github.com/eQR-code/QRtree).
@@ -71,7 +71,7 @@ The QR tree dialect was first defined in the following specifications [[2]](http
 - In the implementation it was privilaged the maximum possible ``correction level`` at the cost of having a higher ``version``, in order to improve reliability of QR code read operations.
 
 # Limitations
-If compared with the specifications defined in [[2]](https://arxiv.org/abs/2403.04708) and [[3]](https://arxiv.org/abs/2403.04716).
+If compared with the specifications defined in [[2]](https://doi.org/10.48550/arXiv.2403.04708) and [[3]](https://doi.org/10.48550/arXiv.2403.04716).
 The version v1.0 has the following limitations:
 - References are encoded with an extensible format limited to the following cases 4 bits, 8 bits, 16 bits and 32 bits
 - Jumps are encoded with an extensible format limited to the following cases 4 bits, 8 bits, 16 bits and 32 bits
@@ -81,8 +81,8 @@ The version v1.0 has the following limitations:
  
 # References
 - [1] S. Scanzio, G. Cena and A. Valenzano, “QRscript: Embedding a Programming Language in QR codes to support Decision and Management,” 27th IEEE International Conference on Emerging Technologies and Factory Automation (ETFA 2022), 2022, pp. 1-8. doi: [10.1109/ETFA52439.2022.9921530](https://doi.org/10.1109/ETFA52439.2022.9921530) (**First paper about QRscript and QRtree**)
-- [2] S. Scanzio, M. Rosani, M. Scamuzzi, and G. Cena, “QRscript specification,” arXiv, pp. 1–13, Mar. 2024. [Online]. Available: [https://arxiv.org/abs/2403.04708](https://arxiv.org/abs/2403.04708) (**Specification document of QRscript**)
-- [3] S. Scanzio, M. Rosani, M. Scamuzzi, and G. Cena, “QRtree - Decision Tree dialect specification of QRscript,” arXiv, pp. 1–32, Mar. 2024. [Online]. Available: [https://arxiv.org/abs/2403.04716](https://arxiv.org/abs/2403.04716) (**Specification document of QRtree**)
+- [2] S. Scanzio, M. Rosani, M. Scamuzzi, and G. Cena, “QRscript specification,” arXiv, pp. 1–13, Mar. 2024. doi: [10.48550/arXiv.2403.04708](https://doi.org/10.48550/arXiv.2403.04708) (**Specification document of QRscript**)
+- [3] S. Scanzio, M. Rosani, M. Scamuzzi, and G. Cena, “QRtree - Decision Tree dialect specification of QRscript,” arXiv, pp. 1–32, Mar. 2024. doi: [10.48550/arXiv.2403.04716](https://doi.org/10.48550/arXiv.2403.04716) (**Specification document of QRtree**)
 - [4] S. Scanzio, M. Rosani, and M. Scamuzzi, “QRtree software,” GitHub. [Online]. Available: [https://github.com/eQR-code/QRtree](https://github.com/eQR-code/QRtree) (**This software**)
 
 
