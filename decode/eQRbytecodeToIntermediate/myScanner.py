@@ -71,7 +71,7 @@ class Scanner:
         return t
 
     def t_ref_REF8(self,t):
-        r'111(?!1111)(0|1){4}'
+        r'(?<=1)111(?!1111)(0|1){4}'
         self.lexer.begin('INITIAL')
         return t
 
