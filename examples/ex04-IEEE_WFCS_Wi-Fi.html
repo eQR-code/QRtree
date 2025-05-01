@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>ex04/ex04-IEEE_WFCS_Wi-Fi.html</title>
+        <meta charset="utf-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <style>
+            
+    div[data-line] {
+        display: none;
+    }
+    div[data-line][data-executed] {
+        display: block;
+    }
+    
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <h1>ex04/ex04-IEEE_WFCS_Wi-Fi.html</h1>
+            </div>
+            <main class="row">
+                <div class="col-12" data-line="0" data-type="input"><h3>Operation?</h3></div><div class="col-auto" data-line="1" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(1, 5)">Check status</button></div><div class="col-auto" data-line="2" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(2, 49)">Configuration</button></div><div class="col-auto" data-line="3" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(3, 60)">Generic information</button></div><div class="col-auto" data-line="3" data-type="else"><button type="button" class="btn btn-sm btn-secondary" onclick="if_true(3, 4)">Other</button></div><div class="col-12" data-line="4" data-type="goto" data-par1="74"></div><div class="col-12" data-line="5" data-type="input"><h3>What led?</h3></div><div class="col-auto" data-line="6" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(6, 10)">Power</button></div><div class="col-auto" data-line="7" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(7, 28)">LAN</button></div><div class="col-auto" data-line="8" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(8, 39)">2.4 or 5.0 GHz</button></div><div class="col-auto" data-line="8" data-type="else"><button type="button" class="btn btn-sm btn-secondary" onclick="if_true(8, 9)">Other</button></div><div class="col-12" data-line="9" data-type="goto" data-par1="48"></div><div class="col-12" data-line="10" data-type="input"><h3>What color?</h3></div><div class="col-auto" data-line="11" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(11, 19)">Amber initial</button></div><div class="col-auto" data-line="12" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(12, 21)">Green</button></div><div class="col-auto" data-line="13" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(13, 22)">Blue</button></div><div class="col-auto" data-line="14" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(14, 23)">Blinking Amber</button></div><div class="col-auto" data-line="15" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(15, 24)">Blinking multicolor</button></div><div class="col-auto" data-line="16" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(16, 25)">Amber during operation</button></div><div class="col-auto" data-line="17" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(17, 26)">Off</button></div><div class="col-auto" data-line="17" data-type="else"><button type="button" class="btn btn-sm btn-secondary" onclick="if_true(17, 18)">Other</button></div><div class="col-12" data-line="18" data-type="goto" data-par1="27"></div><div class="col-12" data-line="19" data-type="printex"><h3>Starting/Getting IP address</h3></div><div class="col-12" data-line="20" data-type="goto" data-par1="27"></div><div class="col-12" data-line="21" data-type="printex"><h3>Operating standalone mode</h3></div><div class="col-12" data-line="22" data-type="printex"><h3>Operating insight mode</h3></div><div class="col-12" data-line="23" data-type="printex"><h3>Firmware update</h3></div><div class="col-12" data-line="24" data-type="printex"><h3>Mesh setup in progress</h3></div><div class="col-12" data-line="25" data-type="printex"><h3>PoE problem</h3></div><div class="col-12" data-line="26" data-type="printex"><h3>No power</h3></div><div class="col-12" data-line="27" data-type="goto" data-par1="48"></div><div class="col-12" data-line="28" data-type="input"><h3>What color?</h3></div><div class="col-auto" data-line="29" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(29, 34)">Green</button></div><div class="col-auto" data-line="30" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(30, 36)">Blinking Green</button></div><div class="col-auto" data-line="31" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(31, 37)">Amber</button></div><div class="col-auto" data-line="32" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(32, 38)">Blinking Amber</button></div><div class="col-auto" data-line="32" data-type="else"><button type="button" class="btn btn-sm btn-secondary" onclick="if_true(32, 33)">Other</button></div><div class="col-12" data-line="33" data-type="goto" data-par1="39"></div><div class="col-12" data-line="34" data-type="printex"><h3>2.5 Gbps Ethernet link</h3></div><div class="col-12" data-line="35" data-type="goto" data-par1="39"></div><div class="col-12" data-line="36" data-type="printex"><h3>Activity on a 2.5 Gbps Ethernet link</h3></div><div class="col-12" data-line="37" data-type="printex"><h3>Ethernet link lower than 2.5 Gbps</h3></div><div class="col-12" data-line="38" data-type="printex"><h3>Activity on an Ethernet link lower than 2.5 Gbps</h3></div><div class="col-12" data-line="39" data-type="input"><h3>What color?</h3></div><div class="col-auto" data-line="40" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(40, 44)">Green</button></div><div class="col-auto" data-line="41" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(41, 46)">Blue</button></div><div class="col-auto" data-line="42" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(42, 47)">Blinking blue</button></div><div class="col-auto" data-line="42" data-type="else"><button type="button" class="btn btn-sm btn-secondary" onclick="if_true(42, 43)">Other</button></div><div class="col-12" data-line="43" data-type="goto" data-par1="48"></div><div class="col-12" data-line="44" data-type="printex"><h3>Wi-Fi radio on / No client</h3></div><div class="col-12" data-line="45" data-type="goto" data-par1="48"></div><div class="col-12" data-line="46" data-type="printex"><h3>Wi-Fi radio on / with client</h3></div><div class="col-12" data-line="47" data-type="printex"><h3>Activity detected</h3></div><div class="col-12" data-line="48" data-type="goto" data-par1="74"></div><div class="col-12" data-line="49" data-type="input"><h3>What do you need?</h3></div><div class="col-auto" data-line="50" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(50, 54)">AP configuration User / Password</button></div><div class="col-auto" data-line="51" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(51, 57)">Network access SSID / Password</button></div><div class="col-auto" data-line="52" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(52, 59)">IP</button></div><div class="col-auto" data-line="52" data-type="else"><button type="button" class="btn btn-sm btn-secondary" onclick="if_true(52, 53)">Other</button></div><div class="col-12" data-line="53" data-type="goto" data-par1="60"></div><div class="col-12" data-line="54" data-type="print"><h3>User: admin</h3></div><div class="col-12" data-line="55" data-type="printex"><h3>Password: 1234</h3></div><div class="col-12" data-line="56" data-type="goto" data-par1="60"></div><div class="col-12" data-line="57" data-type="print"><h3>SSID: my_net</h3></div><div class="col-12" data-line="58" data-type="printex"><h3>Password: 123456</h3></div><div class="col-12" data-line="59" data-type="printex"><h3>192.168.4.2</h3></div><div class="col-12" data-line="60" data-type="input"><h3>About what?</h3></div><div class="col-auto" data-line="61" data-type="if"><button type="button" class="btn btn-sm btn-primary" onclick="if_true(61, 63)">Standard</button></div><div class="col-auto" data-line="61" data-type="else"><button type="button" class="btn btn-sm btn-secondary" onclick="if_true(61, 62)">Other</button></div><div class="col-12" data-line="62" data-type="goto" data-par1="74"></div><div class="col-12" data-line="63" data-type="inputs"><h3>Insert speed in Mbps</h3><div class="row"><div class="col-lg-11 col-10"><input type="text" class="form-control" /></div><div class="col-lg-1 col-2"><button type="button" class="btn btn-sm btn-primary" onclick="inputs_submit()">Ok</button></div></div></div><div class="col-12" data-line="64" data-type="ifc" data-par1-cmp="3" data-par1-val="9600" data-par2="69"></div><div class="col-12" data-line="65" data-type="ifc" data-par1-cmp="3" data-par1-val="3500" data-par2="71"></div><div class="col-12" data-line="66" data-type="ifc" data-par1-cmp="3" data-par1-val="600" data-par2="72"></div><div class="col-12" data-line="67" data-type="ifc" data-par1-cmp="3" data-par1-val="54" data-par2="73"></div><div class="col-12" data-line="68" data-type="printex"><h3>802.11g</h3></div><div class="col-12" data-line="69" data-type="printex"><h3>802.11be (Wi-Fi 7)</h3></div><div class="col-12" data-line="70" data-type="goto" data-par1="74"></div><div class="col-12" data-line="71" data-type="printex"><h3>802.11ax (Wi-Fi 6)</h3></div><div class="col-12" data-line="72" data-type="printex"><h3>802.11ac (Wi-Fi 5)</h3></div><div class="col-12" data-line="73" data-type="printex"><h3>802.11n (Wi-Fi 4)</h3></div>
+            </main>
+        </div>
+        <script>
+            
+    const execute_event = new Event('execute');
+    let cur_line = 0;
+    let last_input = null;
+
+    const cmp_table = {
+        1: (a, b) => a < b,
+        2: (a, b) => a <= b,
+        3: (a, b) => a > b,
+        4: (a, b) => a >= b,
+        5: (a, b) => a == b,
+        6: (a, b) => a != b
+    }
+
+    function execute() {
+        let elements = document.querySelectorAll(`div[data-line='${cur_line}']`);
+        if (elements != null) {
+            for (let line of elements) {
+                let ex = new execute_event.constructor(execute_event.type, execute_event);
+                line.dispatchEvent(ex);
+            }
+        }
+    }
+
+    function next() {
+        cur_line++;
+        execute();
+    }
+
+    function goto(line) {
+        cur_line = line;
+        execute();
+    }
+
+    function if_true(line, goto_line) {
+        let current = document.querySelector(`div[data-line='${line}']`);
+        let n = current.nextSibling;
+        while (n.dataset.type == 'if' || n.dataset.type == 'else') {
+            n.getElementsByTagName("button")[0].disabled = true;
+            n = n.nextSibling;
+        }
+        n = current.previousSibling;
+        while (n.dataset.type == 'if' || n.dataset.type == 'else') {
+            n.getElementsByTagName("button")[0].disabled = true;
+            n = n.previousSibling;
+        }
+        current.getElementsByTagName("button")[0].disabled = true;
+        goto(goto_line);
+    }
+
+    function inputs_submit() {
+        let current = document.querySelector(`div[data-line='${cur_line}']`);
+        current.getElementsByTagName("button")[0].disabled = true;
+        current.getElementsByTagName("input")[0].disabled = true;
+        next();
+    }
+
+    (function () {
+        for (let line of document.querySelectorAll("div[data-line][data-type='print'], div[data-line][data-type='input']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    next();
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        for (let line of document.querySelectorAll("div[data-line][data-type='inputs'], div[data-line][data-type='else'], div[data-line][data-type='printex']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        for (let line of document.querySelectorAll("div[data-line][data-type='if']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    let next_if = event.currentTarget.nextSibling;
+                    if (next_if.dataset.type == 'if') {
+                        next();
+                    }
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        for (let line of document.querySelectorAll("div[data-line][data-type='ifc']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    let prev = event.currentTarget.previousSibling;
+                    while (prev != null && prev.dataset.type != 'inputs') {
+                        prev = prev.previousSibling;
+                    }
+                    let input = parseFloat(prev.getElementsByTagName("input")[0].value);
+                    let cmp = event.currentTarget.dataset.par1Cmp;
+                    let val = parseFloat(event.currentTarget.dataset.par1Val);
+                    if (Number.isInteger(val)) {
+                        input = parseInt(input);
+                    }
+
+                    if (cmp_table[cmp](input, val)) {
+                        goto(parseInt(event.currentTarget.dataset.par2));
+                    } else {
+                        next();
+                    }
+                    
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        for (let line of document.querySelectorAll("div[data-line][data-type='goto']")) {
+            line.addEventListener("execute", (event) => {
+                if (!event.currentTarget.dataset.executed) {
+                    let par1 = parseInt(line.dataset.par1);
+                    goto(par1);
+                    line.dataset.executed = true;
+                }
+            });
+        }
+        execute();
+    })();
+    
+        </script>
+    </body>
+</html>

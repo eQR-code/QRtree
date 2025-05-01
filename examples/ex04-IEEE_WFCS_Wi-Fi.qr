@@ -1,0 +1,74 @@
+(0) input "Operation?"
+(1) if "Check status" (5)
+(2) if "Configuration" (49)
+(3) if "Generic information" (60)
+(4) goto (74)
+(5) input "What led?"
+(6) if "Power" (10)
+(7) if "LAN" (28)
+(8) if "2.4 or 5.0 GHz" (39)
+(9) goto (48)
+(10) input "What color?"
+(11) if "Amber initial" (19)
+(12) if "Green" (21)
+(13) if "Blue" (22)
+(14) if "Blinking Amber" (23)
+(15) if "Blinking multicolor" (24)
+(16) if "Amber during operation" (25)
+(17) if "Off" (26)
+(18) goto (27)
+(19) printex "Starting/Getting IP address"
+(20) goto (27)
+(21) printex "Operating standalone mode"
+(22) printex "Operating insight mode"
+(23) printex "Firmware update"
+(24) printex "Mesh setup in progress"
+(25) printex "PoE problem"
+(26) printex "No power"
+(27) goto (48)
+(28) input "What color?"
+(29) if "Green" (34)
+(30) if "Blinking Green" (36)
+(31) if "Amber" (37)
+(32) if "Blinking Amber" (38)
+(33) goto (39)
+(34) printex "2.5 Gbps Ethernet link"
+(35) goto (39)
+(36) printex "Activity on a 2.5 Gbps Ethernet link"
+(37) printex "Ethernet link lower than 2.5 Gbps"
+(38) printex "Activity on an Ethernet link lower than 2.5 Gbps"
+(39) input "What color?"
+(40) if "Green" (44)
+(41) if "Blue" (46)
+(42) if "Blinking blue" (47)
+(43) goto (48)
+(44) printex "Wi-Fi radio on / No client"
+(45) goto (48)
+(46) printex "Wi-Fi radio on / with client"
+(47) printex "Activity detected"
+(48) goto (74)
+(49) input "What do you need?"
+(50) if "AP configuration User / Password" (54)
+(51) if "Network access SSID / Password" (57)
+(52) if "IP" (59)
+(53) goto (60)
+(54) print "User: admin"
+(55) printex "Password: 1234"
+(56) goto (60)
+(57) print "SSID: my_net"
+(58) printex "Password: 123456"
+(59) printex "192.168.4.2"
+(60) input "About what?"
+(61) if "Standard" (63)
+(62) goto (74)
+(63) inputs "Insert speed in Mbps"
+(64) ifc > 9600 (69)
+(65) ifc > 3500 (71)
+(66) ifc > 600 (72)
+(67) ifc > 54 (73)
+(68) printex "802.11g"
+(69) printex "802.11be (Wi-Fi 7)"
+(70) goto (74)
+(71) printex "802.11ax (Wi-Fi 6)"
+(72) printex "802.11ac (Wi-Fi 5)"
+(73) printex "802.11n (Wi-Fi 4)"

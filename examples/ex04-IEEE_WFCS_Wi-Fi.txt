@@ -1,0 +1,66 @@
+input "Operation?"
+
+if "Check status":
+   input "What led?"
+   if "Power":
+      input "What color?"
+      if "Amber initial":
+         print "Starting/Getting IP address" exit
+      else if "Green":
+         print "Operating standalone mode" exit
+      else if "Blue":
+         print "Operating insight mode" exit
+      else if "Blinking Amber":
+         print "Firmware update" exit
+      else if "Blinking multicolor":
+         print "Mesh setup in progress" exit
+      else if "Amber during operation":
+         print "PoE problem" exit
+      else if "Off":
+         print "No power" exit
+
+   else if "LAN":
+      input "What color?"
+      if "Green":
+         print "2.5 Gbps Ethernet link" exit
+      else if "Blinking Green":
+         print "Activity on a 2.5 Gbps Ethernet link" exit
+      else if "Amber":
+         print "Ethernet link lower than 2.5 Gbps" exit
+      else if "Blinking Amber":
+         print "Activity on an Ethernet link lower than 2.5 Gbps" exit
+
+   else if "2.4 or 5.0 GHz":
+      input "What color?"
+      if "Green":
+         print "Wi-Fi radio on / No client" exit
+      else if "Blue":
+         print "Wi-Fi radio on / with client" exit
+      else if "Blinking blue":
+         print "Activity detected" exit
+
+else if "Configuration":
+   input "What do you need?"
+   if "AP configuration User / Password":
+      print "User: admin"
+      print "Password: 1234" exit
+   else if "Network access SSID / Password":
+      print "SSID: my_net"
+      print "Password: 123456" exit
+   else if "IP":
+      print "192.168.4.2" exit
+
+else if "Generic information":
+   input "About what?"
+   if "Standard":
+      inputs "Insert speed in Mbps"
+      ifc > 9600:
+         print "802.11be (Wi-Fi 7)" exit
+      else ifc > 3500:
+         print "802.11ax (Wi-Fi 6)" exit
+      else ifc > 600:
+         print "802.11ac (Wi-Fi 5)" exit
+      else ifc > 54:
+         print "802.11n (Wi-Fi 4)" exit
+      else:
+         print "802.11g" exit
