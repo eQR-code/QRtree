@@ -1,0 +1,62 @@
+(0) input "What led?"
+(1) if "RUN LED" (7)
+(2) if "ERR LED" (26)
+(3) if "PW1 LED" (34)
+(4) if "PW2 LED" (42)
+(5) if "SYNC LED" (50)
+(6) goto (62)
+(7) print "Operating status of the switch"
+(8) input "What color?"
+(9) if "Green" (14)
+(10) if "Flashing Green" (16)
+(11) if "Flashing Red" (23)
+(12) if "Off" (24)
+(13) goto (25)
+(14) printex "Normal operation"
+(15) goto (25)
+(16) input "At what speed?"
+(17) if "500 ms interval" (20)
+(18) if "250 ms interval" (22)
+(19) goto (23)
+(20) printex "Reset button pressed"
+(21) goto (23)
+(22) printex "Normally operating with USB drive connected"
+(23) printex "Initializing"
+(24) printex "Power-off"
+(25) goto (62)
+(26) print "Error status"
+(27) input "What color?"
+(28) if "On Red" (30)
+(29) goto (31)
+(30) printex "Initial error occurred/USB flash drive failed"
+(31) if "Off Red" (33)
+(32) goto (34)
+(33) printex "No error"
+(34) print "Status of power supply 1"
+(35) input "What color?"
+(36) if "On" (39)
+(37) if "Off" (41)
+(38) goto (42)
+(39) printex "Power-on on power supply 1"
+(40) goto (42)
+(41) printex "Power-off on power supply 1"
+(42) print "Status of power supply 2"
+(43) input "What color?"
+(44) if "On" (47)
+(45) if "Off" (49)
+(46) goto (50)
+(47) printex "Power-on on power supply 2"
+(48) goto (50)
+(49) printex "Power-off on power supply 2"
+(50) print "Synchronization status"
+(51) input "What color?"
+(52) if "On Orange" (57)
+(53) if "On Green" (59)
+(54) if "Flashing orange" (60)
+(55) if "Off" (61)
+(56) goto (62)
+(57) printex "Operating as the time synchronization master"
+(58) goto (62)
+(59) printex "Operating as the time synchronization device"
+(60) printex "Initializing time synchronization process, or time synchronization unstable state"
+(61) printex "Time synchronization function disabled"

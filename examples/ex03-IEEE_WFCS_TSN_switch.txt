@@ -1,0 +1,54 @@
+input "What led?"
+if "RUN LED":
+    print "Operating status of the switch"
+    input "What color?"
+    if "Green":
+        print "Normal operation" exit
+    else if "Flashing Green":
+        input "At what speed?"
+        if "500 ms interval":
+            print "Reset button pressed" exit
+        else if "250 ms interval":
+            print "Normally operating with USB drive connected"
+            exit
+    else if "Flashing Red":
+        print "Initializing" exit
+    else if "Off":
+        print "Power-off" exit
+
+else if "ERR LED":
+    print "Error status"
+    input "What color?"
+    if "On Red":
+        print "Initial error occurred/USB flash drive failed" exit
+    if "Off Red":
+        print "No error" exit
+
+else if "PW1 LED":
+    print "Status of power supply 1"
+    input "What color?"
+    if "On":
+        print "Power-on on power supply 1" exit
+    else if "Off":
+        print "Power-off on power supply 1" exit
+
+else if "PW2 LED":
+    print "Status of power supply 2"
+    input "What color?"
+    if "On":
+        print "Power-on on power supply 2" exit
+    else if "Off":
+        print "Power-off on power supply 2" exit
+
+else if "SYNC LED":
+    print "Synchronization status"
+    input "What color?"
+    if "On Orange":
+        print "Operating as the time synchronization master" exit
+    else if "On Green":
+        print "Operating as the time synchronization device" exit
+    else if "Flashing orange":
+        print "Initializing time synchronization process, or time synchronization unstable state" exit
+    else if "Off":
+        print "Time synchronization function disabled" exit
+
